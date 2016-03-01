@@ -1,5 +1,5 @@
 {
-  "name": "Watermark Generator",
+  "name": "watermark_generator",
   "version": "1.0.0",
   "description": "Watermark Generator by team 2 ls2016",
   "dependencies": {
