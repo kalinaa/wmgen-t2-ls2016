@@ -1,0 +1,10 @@
+{
+  "name": "Watermark Generator",
+  "version": "1.0.0",
+  "description": "Watermark Generator by team 2 ls2016",
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "jquery-ui": "^1.11.4",
+    "blueimp-file-upload": "jquery-file-upload#^9.12.1"
+  }
+}
