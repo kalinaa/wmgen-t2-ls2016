@@ -102,17 +102,17 @@ gulp.task('style:build', function () {
         .pipe(reload({stream: true}));
 });
 
-// gulp.task('image:build', function () {
-//     gulp.src(path.src.img)
-//         .pipe(imagemin({
-//             progressive: true,
-//             svgoPlugins: [{removeViewBox: false}],
-//             use: [pngquant()],
-//             interlaced: true
-//         }))
-//         .pipe(gulp.dest(path.build.img))
-//         .pipe(reload({stream: true}));
-// });
+gulp.task('image:build', function () {
+    gulp.src(path.src.img)
+        // .pipe(imagemin({
+        //     progressive: true,
+        //     svgoPlugins: [{removeViewBox: false}],
+        //     use: [pngquant()],
+        //     interlaced: true
+        // }))
+        .pipe(gulp.dest(path.build.img))
+        .pipe(reload({stream: true}));
+});
 
 
 gulp.task('fonts:build', function() {
@@ -125,8 +125,8 @@ gulp.task('build', [
     'jade:build',
     'js:build',
     'style:build',
-    'fonts:build'
-    //'image:build',
+    'fonts:build',
+    'image:build'
     //'sprite:build',
 ]);
 
@@ -145,9 +145,9 @@ gulp.task('watch', function(){
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
     });
-    // watch([path.watch.img], function(event, cb) {
-    //     gulp.start('image:build');
-    // });
+    watch([path.watch.img], function(event, cb) {
+        gulp.start('image:build');
+    });
     // watch([path.watch.sprite], function(event, cb) {
     //     gulp.start('sprite:build');
     // });

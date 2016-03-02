@@ -1,0 +1,11 @@
+.footer {
+  height: 60px;
+  display: flex;
+
+  &__copyright {
+    color: #FFFFFF;
+    margin: auto;
+    font-family: fira_sanslight;
+    font-size: 12px;
+  }
+}

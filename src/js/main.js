@@ -8,3 +8,5 @@
 /*
  * Custom
  */
+//= partials/styles.js
+//= partials/opacity-slider.js
