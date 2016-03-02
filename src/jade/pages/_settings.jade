@@ -1,0 +1,111 @@
+.settings
+  h2.settings__description Настройки
+  form(method="POST").settings__form
+    .download
+      .download__img
+        span.download__span Исходное изображение
+        label.download__label
+          span Image.jpg
+          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+        span.download__span Водяной знак
+        label.download__label
+          span Image.png
+          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+    .position
+      .position__block
+        span.position__description Положение
+        .position__button
+          a(href="#").position__first
+          a(href="#").position__second
+        .position__watermark-one.clearfix
+          .watermark-wrap
+            .watermark-table
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+          .watermark-property
+            .position__gorizontal
+              span.position__span X
+              input(type="text" name="text" value="0").position__input
+              .position__coordinates
+                a(href="").position__top
+                a(href="").position__bottom
+            .position__vertical
+              span.position__span Y
+              input(type="text" name="text" value="0").position__input
+              .position__coordinates
+                a(href="").position__top
+                a(href="").position__bottom
+        .position__watermark-second.hide.clearfix
+          .watermark-wrap
+            .line-horizontal
+            .line-vertical
+            .watermark-table
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+              .watermark-row
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+                .watermark-col
+                  a(href="#").watermark-link
+          .watermark-property
+            .position__gorizontal
+              span.position__name-plus X
+              input(type="text" name="text" value="0").position__input
+              .position__coordinates
+                a(href="").position__top
+                a(href="").position__bottom
+            .position__vertical
+              span.position__name-minus Y
+              input(type="text" name="text" value="0").position__input
+              .position__coordinates
+                a(href="").position__top
+                a(href="").position__bottom
+    .transparency
+      .transparency__block
+        span.download__span Прозрачность
+        #slider.transparency__slider
+    .settings__button.clearfix
+      button(type="reset").button.button-reset Сброс
+      button(type="submit").button.button-submit Скачать
+
+
+
+
+
+
+
+
+

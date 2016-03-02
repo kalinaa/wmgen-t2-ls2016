@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 		browserSync = require("browser-sync"),
 		reload = browserSync.reload,
     spritesmith = require('gulp.spritesmith');
-;
+
 
 var path = {
     build: {
@@ -69,13 +69,6 @@ gulp.task('html:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('sprite', function () {
-    var spriteData = gulp.src('images/*.png').pipe(spritesmith({
-        imgName: 'sprite.png',
-        cssName: 'sprite.css'
-    }));
-    return spriteData.pipe(gulp.dest('src/image'));
-});
 
 gulp.task('js:build', function () {
     gulp.src(path.src.js)

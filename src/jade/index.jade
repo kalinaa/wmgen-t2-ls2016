@@ -1,8 +1,14 @@
-<!DOCTYPE html>
+doctype html
 html(lang="en")
-head
-	meta(charset="UTF-8")
-	title name
-	link(rel="stylesheet" href="css/main.css")
-body
-	h1 Сборка
+	head
+		meta(charset="UTF-8")
+		title name
+		link(rel="stylesheet" href="css/main.css")
+	body
+		.main__wrapper
+			.wrapper
+				.container.clearfix
+					include pages/_result
+					include pages/_settings
+			include pages/_footer
+		script(src="../js/main.js")

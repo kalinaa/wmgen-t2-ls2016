@@ -1,0 +1,22 @@
+.result {
+  width: 700px;
+  height: 670px;
+  float: left;
+  background-color: rgba(46, 54, 65, 0.64);
+
+  &__description {
+    color: #FFFFFF;
+    font-size: 36px;
+    display: block;
+    margin: 15px 22px 60px;
+    font-family: SegoeUI-Light;
+    font-weight: normal;
+  }
+
+  &__block {
+    width: 650px;
+    height: 523px;
+    background: #FFFFFF url("../../img/bg.png")  0 0;
+    margin: 0 25px 0 25px;
+  }
+}
