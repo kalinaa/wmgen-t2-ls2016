@@ -14,7 +14,6 @@ var gulp = require('gulp'),
 		browserSync = require("browser-sync"),
 		reload = browserSync.reload;
 
-
 var path = {
     build: {
         html: 'build/',
