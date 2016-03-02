@@ -320,6 +320,17 @@
 
 .transparency__slider {
   margin-bottom: 15px;
+  height: 10px;
+  border: 2px solid black;
+  width: 200px;
+}
+
+.ui-slider-handle {
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
 }
 
 .transparency {
