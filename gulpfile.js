@@ -12,7 +12,9 @@ var gulp = require('gulp'),
 		cssmin = require('gulp-minify-css'),
 		rimraf = require('rimraf'),
 		browserSync = require("browser-sync"),
-		reload = browserSync.reload;
+		reload = browserSync.reload,
+    spritesmith = require('gulp.spritesmith');
+;
 
 var path = {
     build: {
@@ -65,6 +67,14 @@ gulp.task('html:build', function () {
         .pipe(rigger())
         .pipe(gulp.dest(path.build.html))
         .pipe(reload({stream: true}));
+});
+
+gulp.task('sprite', function () {
+    var spriteData = gulp.src('images/*.png').pipe(spritesmith({
+        imgName: 'sprite.png',
+        cssName: 'sprite.css'
+    }));
+    return spriteData.pipe(gulp.dest('src/image'));
 });
 
 gulp.task('js:build', function () {
