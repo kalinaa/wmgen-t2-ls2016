@@ -18,5 +18,17 @@
     height: 523px;
     background: #FFFFFF url("../../img/bg.png")  0 0;
     margin: 0 25px 0 25px;
+    overflow: hidden;
   }
+}
+
+.img_big{
+    width: 600px;
+    height: 400px;
+    background-color: yellowgreen;
+}
+.img_small{
+    width: 200px;
+    height: 150px;
+    background-color: seagreen;
 }

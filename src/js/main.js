@@ -10,3 +10,4 @@
  */
 //= partials/styles.js
 //= partials/opacity-slider.js
+//= partials/position.js
