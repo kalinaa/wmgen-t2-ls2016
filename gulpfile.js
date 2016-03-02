@@ -12,9 +12,7 @@ var gulp = require('gulp'),
 		cssmin = require('gulp-minify-css'),
 		rimraf = require('rimraf'),
 		browserSync = require("browser-sync"),
-		reload = browserSync.reload,
-    spritesmith = require('gulp.spritesmith');
-
+		reload = browserSync.reload;
 
 var path = {
     build: {
