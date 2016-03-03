@@ -13,3 +13,4 @@
 //= partials/upload.js
 //= partials/opacity-slider.js
 //= partials/position.js
+//= partials/reset.js
