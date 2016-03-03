@@ -5,12 +5,12 @@
       .download__img
         span.download__span Исходное изображение
         label.download__label
-          span Image.jpg
-          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+          span.file-name Image.jpg
+          input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
         span.download__span Водяной знак
         label.download__label
-          span Image.png
-          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+          span.file-name Image.png
+          input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg").download__input
     .position
       .position__block
         span.position__description Положение
