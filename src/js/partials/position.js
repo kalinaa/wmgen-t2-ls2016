@@ -1,7 +1,7 @@
 var position = (function () {
         var init = function () {
             _setUpListners();
-        }
+        };
 
         var _setUpListners = function () {
 
@@ -28,7 +28,7 @@ var position = (function () {
                 console.log(left);
             });
 
-        }
+        };
 
         return {
             init: init
