@@ -321,8 +321,8 @@
 .transparency__slider {
   position: relative;
   margin-bottom: 15px;
-  height: 10px;
-  border: 2px solid black;
+  height: 3px;
+  background-color: #9eb2c0;
   width: 200px;
 }
 
@@ -330,10 +330,26 @@
   display: block;
   position: absolute;
   transform: translate(-50%);
-  width: 10px;
-  height: 10px;
-  background-color: black;
+  width: 8px;
+  height: 8px;
+  top: -11px;
+  border-radius: 50%;
+  border: 7px solid #dbe1e8;
+  background-color: #9eb2c0;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.38);
+  cursor: pointer;
+
+  &:hover{
+    background-color: #f97e76;
+    cursor: pointer;
+  }
+
+  &:focus{
+    outline: none;
+  }
 }
+
+
 
 .transparency {
   margin-bottom: 45px;
