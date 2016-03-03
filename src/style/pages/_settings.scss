@@ -319,7 +319,20 @@
 }
 
 .transparency__slider {
+  position: relative;
   margin-bottom: 15px;
+  height: 10px;
+  border: 2px solid black;
+  width: 200px;
+}
+
+.ui-slider-handle {
+  display: block;
+  position: absolute;
+  transform: translate(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: black;
 }
 
 .transparency {
