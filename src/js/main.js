@@ -12,3 +12,4 @@
 //= partials/styles.js
 //= partials/upload.js
 //= partials/opacity-slider.js
+//= partials/position.js
