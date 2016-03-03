@@ -127,7 +127,6 @@ gulp.task('build', [
     'style:build',
     'fonts:build',
     'image:build'
-    //'sprite:build',
 ]);
 
 gulp.task('watch', function(){
