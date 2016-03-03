@@ -21,7 +21,8 @@ var path = {
         js: 'build/js/',
         css: 'build/css/',
         img: 'build/img/',
-        fonts: 'build/fonts/'
+        fonts: 'build/fonts/',
+        server: 'build/server/'
     },
     src: {
         html: 'src/*.html',
@@ -29,7 +30,8 @@ var path = {
         js: 'src/js/main.js',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        server: 'src/server/**/*.*'
     },
     watch: {
         html: 'src/**/*.html',
@@ -114,6 +116,12 @@ gulp.task('image:build', function () {
         .pipe(reload({stream: true}));
 });
 
+gulp.task('server:build', function () {
+    gulp.src(path.src.server)
+        .pipe(gulp.dest(path.build.server))
+        .pipe(reload({stream: true}));
+});
+
 
 gulp.task('fonts:build', function() {
     gulp.src(path.src.fonts)
@@ -126,7 +134,8 @@ gulp.task('build', [
     'js:build',
     'style:build',
     'fonts:build',
-    'image:build'
+    'image:build',
+    'server:build'
     //'sprite:build',
 ]);
 

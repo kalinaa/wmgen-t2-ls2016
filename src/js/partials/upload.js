@@ -10,8 +10,7 @@
             var fileType = data.result.files[0].type,
                 fileExt = fileType.substring(fileType.lastIndexOf('/')+1, fileType.length);
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);
-            console.log(data.result.files[0].name);
-            console.log(data.result.files[0].url);
+            $('#main-img').attr('src', data.result.files[0].url);
             console.log(data.result.files[0].type);
             console.log(fileExt);
         },
@@ -29,7 +28,7 @@
             var fileType = data.result.files[0].type,
                 fileExt = fileType.substring(fileType.lastIndexOf('/')+1, fileType.length);
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
-            console.log(data.result.files[0].url);
+            $('#watermark').attr('src', data.result.files[0].url);
             console.log(data.result.files[0].type);
             console.log(fileExt);
         },

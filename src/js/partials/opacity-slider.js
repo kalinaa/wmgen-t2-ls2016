@@ -1,6 +1,6 @@
 ;(function (){
     var opacitySlider = $('#slider'),
-        smallImg =      $('#image'),
+        smallImg =      $('#watermark'),
         progress =      $('#trans-progress');
         opacity =       1;
         opacitySlider.slider({
