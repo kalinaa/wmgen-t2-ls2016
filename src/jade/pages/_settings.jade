@@ -5,12 +5,12 @@
       .download__img
         span.download__span Исходное изображение
         label.download__label
-          span Image.jpg
-          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+          span.file-name Image.jpg
+          input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
         span.download__span Водяной знак
         label.download__label
-          span Image.png
-          input(type="file" name="img" multiple="" accept="image/*,image/jpeg").download__input
+          span.file-name Image.png
+          input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg").download__input
     .position
       .position__block
         span.position__description Положение
@@ -22,35 +22,35 @@
             .watermark-table
               .watermark-row
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="left top").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="center top").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="right top").watermark-link
               .watermark-row
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="left center").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="center center").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="right center").watermark-link
               .watermark-row
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="left bottom").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="center bottom").watermark-link
                 .watermark-col
-                  a(href="#").watermark-link
+                  a(href="#" data-pos="right bottom").watermark-link
           .watermark-property
             .position__gorizontal
               span.position__span X
-              input(type="text" name="text" value="0").position__input
-              .position__coordinates
+              input(type="text" name="text" value="0").position__input.input_x
+              .position__coordinates 
                 a(href="").position__top
                 a(href="").position__bottom
             .position__vertical
               span.position__span Y
-              input(type="text" name="text" value="0").position__input
+              input(type="text" name="text" value="0").position__input.input_y
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
