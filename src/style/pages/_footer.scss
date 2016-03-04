@@ -1,6 +1,9 @@
 .footer {
   height: 60px;
   display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   &__copyright {
     color: #FFFFFF;
