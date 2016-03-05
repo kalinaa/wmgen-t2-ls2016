@@ -2,5 +2,6 @@
 	$('.settings__form').find('input').val('');
 	$('.file-name').html('');
 	$('#main-img, #watermark').removeAttr("alt").removeAttr("src");
-	$('.ui-slider-handle').css('left','50%');
+	$('.ui-slider-handle').css('left','100%');
+	$('#trans-progress').css('width','100%');
 });
