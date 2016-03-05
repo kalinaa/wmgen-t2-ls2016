@@ -3,14 +3,17 @@
   form(method="POST").settings__form
     .download
       .download__img
-        span.download__span Исходное изображение
-        label.download__label
-          span.file-name
-          input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
-        span.download__span Водяной знак
-        label.download__label.disabled
-          span.file-name
-          input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg" disabled).download__input
+        .input-wrap
+          span.download__span Исходное изображение
+          label.download__label
+            span.file-name
+            input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
+        .input-wrap#watermark-wrap
+          span.download__span Водяной знак
+          label.download__label
+            span.file-name
+            input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg" disabled).download__input
+          .disabled
     .position
       .position__block
         span.position__description Положение
@@ -93,15 +96,18 @@
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
+      .disabled
     .transparency
       .transparency__block
         span.download__span.download__span--transparency Прозрачность
         .transparency__default
           #slider.transparency__slider
           #trans-progress.transparency__slider-other
+      .disabled
     .settings__button.clearfix
       button(type="reset").button.button-reset Сброс
       button(type="submit").button.button-submit Скачать
+      .disabled
 
 
 

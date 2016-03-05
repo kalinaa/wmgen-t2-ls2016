@@ -424,6 +424,8 @@
 .settings__button {
   width: 239px;
   padding: 0 11px;
+  margin-top: -5px;
+  position: relative;
 }
 
 .button {
@@ -437,7 +439,6 @@
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   border: none;
-  margin-top: -5px;
 
   &:focus {
     outline: none;

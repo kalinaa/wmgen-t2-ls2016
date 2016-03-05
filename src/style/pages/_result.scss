@@ -33,15 +33,12 @@
 .img_big{
     max-width: 650px;
     max-height: 523px;
-  //временно, для отладки
-    background-color: yellowgreen;
 }
 .img_small{
     position: absolute;
     top: 0;
     left: 0;
   //временно, для отладки
-    background-color: seagreen;
     max-width: 200px;
     max-height: 150px;
 }
