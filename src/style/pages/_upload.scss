@@ -1,0 +1,8 @@
+.disabled{
+  cursor: default;
+  color: lighten($gray, 20%);
+  border-color: lighten($gray, 20%);
+  &:after{
+    background-color: lighten($coral, 20%);
+  }
+}

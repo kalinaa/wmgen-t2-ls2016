@@ -2,13 +2,16 @@
     var opacitySlider = $('#slider'),
         smallImg =      $('#watermark'),
         progress =      $('#trans-progress');
-        opacity =       1;
+        watermarkOpacity =       1;
         opacitySlider.slider({
             value: 100,
             slide: function(event, value){
-                opacity = value.value/100;
-                smallImg.fadeTo(0, opacity);
-                progress.width(opacity)
+                watermarkOpacity = value.value/100;
+                smallImg.fadeTo(0, watermarkOpacity);
+                progress.width(value.value + '%');
+            },
+            change: function() {
+                return watermarkOpacity
             }
         });
 }());

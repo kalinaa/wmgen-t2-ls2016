@@ -1,9 +1,12 @@
+$gray: #9eb2c0;
+$coral: #f97e76;
+
 @import "pages/_fonts";
 @import "pages/_mixins";
 @import "pages/_result";
 @import "pages/_settings";
 @import "pages/_footer";
-
+@import "pages/_upload";
 
 body {
   background: url("../img/bg-wrap.jpg") no-repeat 0 0;
