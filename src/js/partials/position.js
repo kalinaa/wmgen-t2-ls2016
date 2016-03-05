@@ -33,11 +33,40 @@ var position = (function () {
             
             function inputXY (input, img, position) {
                 input.on('keyup', function () {
-                    var valueX = input.val();
-                    img.css(position, valueX + 'px' );
+                    var value = input.val();
+                    img.css(position, value + 'px' );
                 });
             }
             
+            //ввод позиции через кнопки вверх, вниз
+            $('.top_x').on('click', function (e) {
+                e.preventDefault();
+                var valueX = $('.input_x').val();
+                var newValueX = +valueX + 1;
+                $('.input_x').val(newValueX);
+                $('.img_small').css('left', newValueX + 'px' );
+            });
+             $('.bottom_x').on('click', function (e) {
+                e.preventDefault();
+                var valueX = $('.input_x').val();
+                var newValueX = +valueX - 1;
+                $('.input_x').val(newValueX);
+                $('.img_small').css('left', newValueX + 'px' );
+            });
+            $('.top_y').on('click', function (e) {
+                e.preventDefault();
+                var valueY = $('.input_y').val();
+                var newValueY = +valueY + 1;
+                $('.input_y').val(newValueY);
+                $('.img_small').css('top', newValueY + 'px' );
+            });
+             $('.bottom_y').on('click', function (e) {
+                e.preventDefault();
+                var valueY = $('.input_y').val();
+                var newValueY = +valueY - 1;
+                $('.input_y').val(newValueY);
+                $('.img_small').css('top', newValueY + 'px' );
+            });
         };
 
         return {
