@@ -1,0 +1,86 @@
+$size:1.4em;
+$dotCount:10;
+$animationTime:2.5s;
+
+.download-popup {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  display: none;
+  z-index: 1;
+}
+
+.download-popup__loading-list {
+  position: absolute;
+  left: calc(50% - 0.7em);
+  top: calc(50% - 4.2em);
+  display: inline-block;
+  text-indent:$size*2;
+
+  &:after {
+    content:"";
+    display: block;
+    width: $size;
+    height: $size;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: $size*2;
+    left: 1px;
+  }
+}
+
+.download-popup__loading-item {
+  position: absolute;
+  list-style-type: none;
+  padding-bottom: $size*4;
+  top: 0;
+  left: 0;
+  &:after {
+    content:"";
+    display: block;
+    width: $size;
+    height: $size;
+    background-color: #fff;
+    border-radius: 100%;
+  }
+}
+
+@for $i from 1 through 10 {
+  .download-popup__loading-item:nth-child(#{$i}) {
+    $deg: ($i - 1)*(360deg/$dotCount);
+    transform: rotate($deg);
+    animation-delay: $animationTime*$i/$dotCount/2;
+  }
+  .download-popup__loading-item:nth-child(#{$i}):after {
+    animation-delay: $animationTime*$i/$dotCount/2;
+  }
+}
+
+.download-popup__loading-item{
+  animation: dotAnimation $animationTime infinite;
+}
+@keyframes dotAnimation {
+  0%, 55%, 100%    {
+    padding: 0 0 $size*4 0;
+  }
+  5%,50%   {
+    padding: $size*2 0;
+  }
+}
+
+.download-popup__loading-item:after{
+  animation: dotAnimationTwo $animationTime infinite;
+}
+@-webkit-keyframes dotAnimationTwo {
+  0%, 55%, 100%   {
+    opacity:1;
+    transform: scale(1);
+  }
+  5%,50%  {
+    opacity: .5;
+    transform: scale(0.5);
+  }
+}

@@ -1,11 +1,14 @@
 .footer {
   height: 60px;
   display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   &__copyright {
     color: #FFFFFF;
     margin: auto;
-    font-family: fira_sanslight;
+    font-family: 'FiraSans', sans-serif;
     font-size: 12px;
   }
 }
