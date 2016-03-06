@@ -70,12 +70,20 @@ var position = (function () {
                             value = maxValueX;
                             input.val(maxValueX);
                         }
+                        else if(value < 0){
+                            value = 0;
+                            input.val(0);
+                        }
                     }
                     if(axis == 'y'){
                         var maxValueY = $('.img_big').height() - $('.img_small').height();
                         if(value >= maxValueY){
                             value = maxValueY;
                             input.val(maxValueY);
+                        }
+                        else if(value < 0){
+                            value = 0;
+                            input.val(0);
                         }
                     }
                     img.css(position, value + 'px' );
