@@ -10,6 +10,7 @@
  * Custom
  */
 //= partials/styles.js
+//= partials/change-lang.js
 //= partials/upload.js
 //= partials/opacity-slider.js
 //= partials/position.js
