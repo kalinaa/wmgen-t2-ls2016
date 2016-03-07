@@ -1,6 +1,5 @@
+/* global $ */
 var position = (function () {
-    var image = $('.img_small'),
-        info;
 
 
         var init = function () {
@@ -9,16 +8,25 @@ var position = (function () {
         };
 
             // Смена координат с помощью мыши
-            var _changePositionDrag = function() {
-                image.draggable({
-                    cursor: 'move',
-                    containment: 'parent',
-                    drag: function(event, ui) {
-                        x = $('.img_big').width();
-                        y = $('.img_big').height();
-                        ui.position.left / x;
-                        ui.position.top / y;
-
+        var _changePositionDrag = function() {
+            var image = $('.img_small'),
+                info;
+                
+            image.draggable({
+                cursor: 'move',
+                containment: 'parent',
+                drag: function(event, ui) {
+                    x = $('.img_big').width();
+                    y = $('.img_big').height();
+                    ui.position.left / x;
+                    ui.position.top / y;
+                    
+                    $('.watermark-link').removeClass('watermark-link--active');
+                    //Запись координатов с Draggable в input
+                    var left = Math.round(ui.position.left).toFixed(0);
+                    var top = Math.round(ui.position.top).toFixed(0);
+                    $('.input_x').val(left);
+                    $('.input_y').val(top);
                     }
                 });
             };
@@ -26,6 +34,8 @@ var position = (function () {
         var _setUpListners = function () {
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
+                $('.watermark-link').removeClass('watermark-link--active');
+                $(this).addClass('watermark-link--active');
                 var pos = $(this).data("pos");
 
                 $('.img_small').position({
@@ -45,47 +55,86 @@ var position = (function () {
             });
             
             //задает положение через ввод данных в input по оси Х
-            inputXY ($('.input_x'), $('.img_small'), 'left');
+            inputXY ($('.input_x'), $('.img_small'), 'left', 'x');
             
             //задает положение через ввод данных в input по оси Y
-            inputXY ($('.input_y'), $('.img_small'), 'top');
+            inputXY ($('.input_y'), $('.img_small'), 'top', 'y');
             
-            function inputXY (input, img, position) {
+            function inputXY (input, img, position, axis) {
                 input.on('keyup', function () {
+                    $('.watermark-link').removeClass('watermark-link--active');
                     var value = input.val();
+                    if(axis == 'x'){
+                        var maxValueX = $('.img_big').width() - $('.img_small').width();
+                        if(value >= maxValueX){
+                            value = maxValueX;
+                            input.val(maxValueX);
+                        }
+                        else if(value < 0){
+                            value = 0;
+                            input.val(0);
+                        }
+                    }
+                    if(axis == 'y'){
+                        var maxValueY = $('.img_big').height() - $('.img_small').height();
+                        if(value >= maxValueY){
+                            value = maxValueY;
+                            input.val(maxValueY);
+                        }
+                        else if(value < 0){
+                            value = 0;
+                            input.val(0);
+                        }
+                    }
                     img.css(position, value + 'px' );
                 });
             }
             
             //ввод позиции через кнопки вверх, вниз
-            $('.top_x').on('click', function (e) {
-                e.preventDefault();
-                var valueX = $('.input_x').val();
-                var newValueX = +valueX + 1;
-                $('.input_x').val(newValueX);
-                $('.img_small').css('left', newValueX + 'px' );
-            });
-             $('.bottom_x').on('click', function (e) {
-                e.preventDefault();
-                var valueX = $('.input_x').val();
-                var newValueX = +valueX - 1;
-                $('.input_x').val(newValueX);
-                $('.img_small').css('left', newValueX + 'px' );
-            });
-            $('.top_y').on('click', function (e) {
-                e.preventDefault();
-                var valueY = $('.input_y').val();
-                var newValueY = +valueY + 1;
-                $('.input_y').val(newValueY);
-                $('.img_small').css('top', newValueY + 'px' );
-            });
-             $('.bottom_y').on('click', function (e) {
-                e.preventDefault();
-                var valueY = $('.input_y').val();
-                var newValueY = +valueY - 1;
-                $('.input_y').val(newValueY);
-                $('.img_small').css('top', newValueY + 'px' );
-            });
+            buttons($('.top_x'), $('.input_x'), 'left', "+", 'x' );
+            buttons($('.bottom_x'), $('.input_x'), 'left', "-", 'x' );
+            buttons($('.top_y'), $('.input_y'), 'top', "+", 'y' );
+            buttons($('.bottom_y'), $('.input_y'), 'top', "-", 'y' );
+            
+            function buttons (object, input, position, math, axis){
+                object.on('click', function (e) {
+                    e.preventDefault();
+                    $('.watermark-link').removeClass('watermark-link--active');
+                    var value = input.val();
+                    var newValue;
+                    
+                    if(math == '+'){
+                        if(axis == 'x'){
+                            var maxValueX = $('.img_big').width() - $('.img_small').width();
+                            if(value >= maxValueX){
+                                newValue = maxValueX;
+                            }
+                            else{
+                                newValue = +value + 1;
+                            }
+                        }
+                        else if(axis == 'y'){
+                            var maxValueY = $('.img_big').height() - $('.img_small').height();
+                            if(value >= maxValueY){
+                                newValue = maxValueY;
+                            }
+                            else{
+                                newValue = +value + 1;
+                            }
+                        }
+                    }
+                    else if(math == '-'){
+                        if(value <= 0){
+                            newValue = 0
+                        }
+                        else{
+                            newValue = +value - 1;
+                        }
+                    }
+                    input.val(newValue);
+                    $('.img_small').css(position, newValue + 'px' );
+                });
+            }
         };
 
 

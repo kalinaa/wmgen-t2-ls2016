@@ -143,6 +143,7 @@
   height: 33px;
   display: table-cell;
   border: 1px solid $gray;
+  background-color: #dae1e9;
 }
 
 .watermark-link {
@@ -153,6 +154,10 @@
   &:hover {
     background: $coral;
   }
+}
+//подключается через js
+.watermark-link--active{
+    background: $coral;
 }
 
 .watermark-property {
@@ -205,8 +210,8 @@
     background: url("../../img/arrow-top.png") no-repeat  0 0;
     width: 13px;
     height: 8px;
-    top: -41px;
-    left: 67px;
+    top: -40px;
+    left: 64px;
   }
 }
 .position__bottom {
@@ -220,7 +225,7 @@
     width: 13px;
     height: 8px;
     left: 64px;
-    top: -11px;
+    top: -12px;
   }
 }
 
