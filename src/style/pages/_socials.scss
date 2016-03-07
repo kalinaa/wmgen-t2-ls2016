@@ -1,0 +1,95 @@
+.socials {
+  position: absolute;
+  top: 189px;
+  left: -43px;
+  width: 86px;
+
+  &:hover {
+    left: 0;
+    transition: 0.5s;
+  }
+
+  &_list {
+    float: left;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.socials__icons--like {
+  @extend  .socials__item;
+  text-indent: -9999px;
+  width: 43px;
+  height: 43px;
+  background: #d4d2d1;
+  display: block;
+  cursor: pointer;
+  float: right;
+
+  &:hover {
+    background: #efeeed;
+  }
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    background: url("../../img/like.png") no-repeat 0 0;
+    width: 26px;
+    height: 32px;
+    top: 5px;
+    left: 49px;
+  }
+}
+
+
+.socials__icons {
+  width: 43px;
+  height: 43px;
+  background: #d4d2d1;
+  display: block;
+  cursor: pointer;
+  text-indent: -9999px;
+  position: relative;
+
+  &:hover {
+    background: #efeeed;
+  }
+
+  &--fb {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 27px;
+      top: 7px;
+      left: 11px;
+      background: url("../../img/fb.png") no-repeat 0 0;
+    }
+  }
+
+  &--tw {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 22px;
+      top: 12px;
+      left: 5px;
+      background: url("../../img/tw.png") no-repeat 0 0;
+    }
+  }
+
+  &--vk {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 18px;
+      top: 13px;
+      left: 3px;
+      background: url("../../img/vk.png") no-repeat 0 0;
+    }
+  }
+}
+

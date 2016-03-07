@@ -1,0 +1,37 @@
+.languages {
+  position: absolute;
+  top: 102px;
+  left: 0;
+  width: 43px;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    list-style-type: none;
+
+    &:first-child {
+      margin-bottom: 1px;
+    }
+  }
+
+  &__link {
+    background: #d4d2d1;
+    display: block;
+    text-decoration: none;
+    color: #8e9298;
+    font-size: 20px;
+    font-family: "Segoe UI Light";
+    padding: 4px 2px;
+
+    &:last-child {
+      padding: 3px 2px;
+    }
+
+    &:hover {
+      background: #efeeed;
+    }
+  }
+}
