@@ -9,8 +9,10 @@
     transition: 0.5s;
   }
 
-  &__item {
+  &_list {
     float: left;
+    margin: 0;
+    padding: 0;
   }
 }
 
