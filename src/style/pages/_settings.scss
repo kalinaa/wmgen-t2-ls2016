@@ -82,6 +82,12 @@
       border-top-right-radius: 3px;
     }
 
+    &:hover {
+      &:after {
+        background: #e3736c;
+      }
+    }
+
     &:before {
       content: '';
       position: absolute;
