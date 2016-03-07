@@ -14,3 +14,4 @@
 //= partials/opacity-slider.js
 //= partials/position.js
 //= partials/reset.js
+//= partials/download.js

@@ -3,8 +3,14 @@
     var mainImg      = $('#main-img-input'),
         watermark    = $('#watermark-input'),
         url          = '../server/php/',
-        disabledNode = $('.disabled');
+        disabledNode = $('.disabled'),
+        workAreaWidth = $('.result__block').width(),
+        workAreaHeight = $('.result__block').height(),
+        widthMainImg,
+        heightMainImg,
+        generalScale;
     mainImg.fileupload({
+        thumbnail:false,
         add: function(e, data) {
             var uploadErrors = [];
             var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
@@ -30,6 +36,17 @@
                 $('#watermark-input').prop('disabled', false);     // разблокировка второго input
                 $('#watermark-wrap').children('.disabled').removeClass('disabled');
             }
+            $.post(
+                '../server/php/getsize.php',
+                {
+                    url: data.result.files[0].url
+                },
+                function(answer){
+                    var param = $.parseJSON(answer);
+                    getImgScale(param);
+                }
+            );
+
         },
         //включение анимации прогресса при загрузку тяжелых файлов
         progress: function (e, data) {
@@ -39,15 +56,45 @@
             }
         }
     });
+
+    var getImgScale = function (param){
+        widthMainImg = param.width;
+        heightMainImg = param.height;
+        var widthScale = workAreaWidth/widthMainImg,
+            heightScale = workAreaHeight/heightMainImg;
+        if (widthScale < 1 && heightScale <1 && widthScale >= heightScale){
+            generalScale = widthScale;
+        } else if (widthScale < 1 && heightScale <1 && widthScale < heightScale){
+            generalScale = heightScale;
+        } else {
+            generalScale = 1;
+        }
+    };
+
     watermark.fileupload({
         url: url,
         dataType: 'json',
+        thumbnail: false,
         done: function (e, data) {
+            $.post(
+                '../server/php/getsize.php',
+                {
+                    url: data.result.files[0].url
+                },
+                function(answer){
+                    var param       = $.parseJSON(answer),
+                        maxWidth    = param.width * generalScale;
+                    $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidth + 'px'});
+                }
+            );
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
             $('#watermark').attr('src', data.result.files[0].url);
+
+
             disabledNode.each(function(){
                 $(this).removeClass('disabled');
             });
+
         },
         //включение анимации прогресса при загрузку тяжелых файлов
         progress: function (e, data) {

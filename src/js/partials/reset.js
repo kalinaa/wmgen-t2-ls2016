@@ -8,6 +8,7 @@
 		$('#trans-progress').css('width','100%');
 		disabledNode.each(function(){
 			$(this).addClass('disabled');
+			$('#watermark-input').prop('disabled', true);
 		});
 	});
 });
