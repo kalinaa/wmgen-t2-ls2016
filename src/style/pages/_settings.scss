@@ -65,6 +65,9 @@
     position: relative;
     margin-bottom: 21px;
     font-family: SegoeUI-Light;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:after {
       position: absolute;
