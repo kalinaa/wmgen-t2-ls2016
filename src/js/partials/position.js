@@ -1,4 +1,6 @@
 /* global $ */
+
+
 var position = (function () {
 
 
@@ -7,20 +9,27 @@ var position = (function () {
             _changePositionDrag();
         };
 
+
+
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
             var image = $('.img_small'),
                 info;
-                
+
             image.draggable({
                 cursor: 'move',
                 containment: 'parent',
                 drag: function(event, ui) {
                     x = $('.img_big').width();
                     y = $('.img_big').height();
-                    ui.position.left / x;
-                    ui.position.top / y;
-                    
+                    ui.position.left / 2;
+                    ui.position.top / 2;
+
+                    if (imgSettings.generalScale != 1) {
+                        console.log(111);
+                            containment: 'window';
+                    }
+
                     $('.watermark-link').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
                     var left = Math.round(ui.position.left).toFixed(0);
@@ -29,7 +38,7 @@ var position = (function () {
                     $('.input_y').val(top);
                     }
                 });
-            };
+        };
 
         var _setUpListners = function () {
             $('.watermark-link').on('click', function (e) {
@@ -53,13 +62,13 @@ var position = (function () {
                 $('.input_x').val(left);
                 $('.input_y').val(top);
             });
-            
+
             //задает положение через ввод данных в input по оси Х
             inputXY ($('.input_x'), $('.img_small'), 'left', 'x');
-            
+
             //задает положение через ввод данных в input по оси Y
             inputXY ($('.input_y'), $('.img_small'), 'top', 'y');
-            
+
             function inputXY (input, img, position, axis) {
                 input.on('keyup', function () {
                     $('.watermark-link').removeClass('watermark-link--active');
@@ -89,20 +98,20 @@ var position = (function () {
                     img.css(position, value + 'px' );
                 });
             }
-            
+
             //ввод позиции через кнопки вверх, вниз
             buttons($('.top_x'), $('.input_x'), 'left', "+", 'x' );
             buttons($('.bottom_x'), $('.input_x'), 'left', "-", 'x' );
             buttons($('.top_y'), $('.input_y'), 'top', "+", 'y' );
             buttons($('.bottom_y'), $('.input_y'), 'top', "-", 'y' );
-            
+
             function buttons (object, input, position, math, axis){
                 object.on('click', function (e) {
                     e.preventDefault();
                     $('.watermark-link').removeClass('watermark-link--active');
                     var value = input.val();
                     var newValue;
-                    
+
                     if(math == '+'){
                         if(axis == 'x'){
                             var maxValueX = $('.img_big').width() - $('.img_small').width();

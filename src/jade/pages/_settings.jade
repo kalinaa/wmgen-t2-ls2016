@@ -1,22 +1,22 @@
 .settings
-  h2.settings__description#settings Настройки
+  h2.settings__description#settings(data-translate="setting") Настройки
   form(method="POST").settings__form
     .download
       .download__img
         .input-wrap
-          span.download__span Исходное изображение
+          span.download__span(data-translate="mainImg") Исходное изображение
           label.download__label
             span.file-name Image.jpg
             input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
         .input-wrap#watermark-wrap
-          span.download__span Водяной знак
+          span.download__span(data-translate="waterM") Водяной знак
           label.download__label
             span.file-name Image.png
             input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg" disabled).download__input
           .disabled
     .position
       .position__block
-        span.position__description Положение
+        span.position__description(data-translate="position") Положение
         .position__button
           a(href="#").position__first
           a(href="#").position__second
@@ -48,7 +48,7 @@
             .position__gorizontal
               span.position__span X
               input(type="text" name="text" value="0").position__input.input_x
-              .position__coordinates 
+              .position__coordinates
                 a(href="").position__top.top_x
                 a(href="").position__bottom.bottom_x
             .position__vertical
@@ -102,14 +102,14 @@
         //=============================================
     .transparency
       .transparency__block
-        span.download__span.download__span--transparency Прозрачность
+        span.download__span.download__span--transparency(data-translate="opacity") Прозрачность
         .transparency__default
           #slider.transparency__slider
           #trans-progress.transparency__slider-other
       .disabled
     .settings__button.clearfix
-      button(type="reset").button.button-reset Сброс
-      button(type="submit").button.button-submit#download-btn Скачать
+      button(type="reset" data-translate="reset").button.button-reset Сброс
+      button(type="submit" data-translate="download").button.button-submit#download-btn Скачать
       .disabled
 
 
