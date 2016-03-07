@@ -36,6 +36,11 @@
   }
 }
 
-.active-lang {
-  background: #efeeed;
+.languages__item.active{
+    .languages__link{
+      background: #efeeed;
+      &:active{
+      background: #efeeed;
+      }
+    }
 }
