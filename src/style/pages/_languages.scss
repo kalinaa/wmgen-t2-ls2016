@@ -23,7 +23,7 @@
     text-decoration: none;
     color: #8e9298;
     font-size: 20px;
-    font-family: "Segoe UI Light";
+    font-family: "SegoeUI-Light";
     padding: 4px 2px;
 
     &:last-child {
@@ -34,4 +34,8 @@
       background: #efeeed;
     }
   }
+}
+
+.active-lang {
+  background: #efeeed;
 }

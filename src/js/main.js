@@ -9,6 +9,7 @@
 /*
  * Custom
  */
+//= partials/img-settings.js
 //= partials/styles.js
 //= partials/change-lang.js
 //= partials/upload.js

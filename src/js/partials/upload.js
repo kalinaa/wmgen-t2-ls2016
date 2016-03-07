@@ -1,4 +1,4 @@
-;$(function () {
+;(function () {
     'use strict';
     var mainImg      = $('#main-img-input'),
         watermark    = $('#watermark-input'),
@@ -7,8 +7,7 @@
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
         widthMainImg,
-        heightMainImg,
-        generalScale;
+        heightMainImg;
     mainImg.fileupload({
         thumbnail:false,
         add: function(e, data) {
@@ -63,11 +62,11 @@
         var widthScale = workAreaWidth/widthMainImg,
             heightScale = workAreaHeight/heightMainImg;
         if (widthScale < 1 && heightScale <1 && widthScale >= heightScale){
-            generalScale = widthScale;
+            imgSettings.generalScale = widthScale;
         } else if (widthScale < 1 && heightScale <1 && widthScale < heightScale){
-            generalScale = heightScale;
+            imgSettings.generalScale = heightScale;
         } else {
-            generalScale = 1;
+            imgSettings.generalScale = 1;
         }
     };
 
@@ -83,7 +82,7 @@
                 },
                 function(answer){
                     var param       = $.parseJSON(answer),
-                        maxWidth    = param.width * generalScale;
+                        maxWidth    = param.width * imgSettings.generalScale;
                     $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidth + 'px'});
                 }
             );
@@ -104,4 +103,4 @@
             }
         }
     });
-});
+}());
