@@ -13,7 +13,6 @@ var position = (function () {
 
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
-            console.log('dspsdfkb? ');
             var image = $('.img_small'),
                 info;
 
