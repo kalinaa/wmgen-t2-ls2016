@@ -4,23 +4,24 @@ var position = (function () {
 
         var init = function () {
             _setUpListners();
-            _changePositionDrag();
+            //_changePositionDrag();
         };
 
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
+            console.log('dspsdfkb? ');
             var image = $('.img_small'),
                 info;
-                
+
             image.draggable({
                 cursor: 'move',
-                containment: 'parent',
+                containment: imgSettings.containment,
                 drag: function(event, ui) {
                     x = $('.img_big').width();
                     y = $('.img_big').height();
                     ui.position.left / x;
                     ui.position.top / y;
-                    
+
                     $('.watermark-link').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
                     var left = Math.round(ui.position.left).toFixed(0);
@@ -32,6 +33,7 @@ var position = (function () {
             };
 
         var _setUpListners = function () {
+            $('.img_small').on('mouseenter', _changePositionDrag);
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
                 $('.watermark-link').removeClass('watermark-link--active');

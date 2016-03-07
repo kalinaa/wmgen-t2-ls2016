@@ -8,6 +8,7 @@
         workAreaHeight = $('.result__block').height(),
         widthMainImg,
         heightMainImg;
+
     mainImg.fileupload({
         thumbnail:false,
         add: function(e, data) {
@@ -61,12 +62,15 @@
         heightMainImg = param.height;
         var widthScale = workAreaWidth/widthMainImg,
             heightScale = workAreaHeight/heightMainImg;
-        if (widthScale < 1 && heightScale <1 && widthScale >= heightScale){
+        if (widthScale < 1 && heightScale < 1 && widthScale >= heightScale){
             imgSettings.generalScale = widthScale;
-        } else if (widthScale < 1 && heightScale <1 && widthScale < heightScale){
+            imgSettings.containment = 'parent';
+        } else if (widthScale < 1 && heightScale < 1 && widthScale < heightScale){
             imgSettings.generalScale = heightScale;
+            imgSettings.containment = 'parent';
         } else {
             imgSettings.generalScale = 1;
+            imgSettings.containment = 'window';
         }
     };
 
