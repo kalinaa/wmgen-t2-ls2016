@@ -1,4 +1,5 @@
 ;(function(){
+    // поклику на disable показывать тултипы
     $('#download-btn').on('click',  function(e){
         e.preventDefault();
         $.post(
@@ -6,11 +7,16 @@
             {
                 opacity: .5
             },
-            function() {
-                var link = document.getElementById('hidden-link');
-                link.setAttribute('href','../server/php/files/marked/marked.jpg');
+            function(answer){
+                var param = $.parseJSON(answer),
+                    link = document.getElementById('hidden-link');
+                link.setAttribute('href', param.url);
                 link.setAttribute('download','marked');
-                link.click();
+                if (param.flag){
+                    link.click();
+                } else {
+                    // показать ошибку
+                }
             }
         )
     })

@@ -6,7 +6,6 @@ var position = (function () {
 
         var init = function () {
             _setUpListners();
-            //_changePositionDrag();
         };
 
 

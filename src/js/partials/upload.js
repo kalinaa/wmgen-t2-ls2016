@@ -35,7 +35,7 @@
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
-            $('#watermark-input').siblings('.file-name').text('');
+            $('#watermark-input').siblings('.file-name').val('');
             $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
             $('#watermark').removeAttr('src').hide();
             if ($('#watermark-input').prop('disabled')){
@@ -60,7 +60,6 @@
                     } else {
                         imgSettings.containment = 'parent';
                     }
-                    console.log(imgSettings.containment);
                 }
             });
             downloadPopup.hide();
