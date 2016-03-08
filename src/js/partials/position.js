@@ -26,11 +26,6 @@ var position = (function () {
                     ui.position.left / 2;
                     ui.position.top / 2;
 
-                    if (imgSettings.generalScale != 1) {
-                        console.log(111);
-                            containment: 'window';
-                    }
-
                     $('.watermark-link').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
                     var left = Math.round(ui.position.left).toFixed(0);
