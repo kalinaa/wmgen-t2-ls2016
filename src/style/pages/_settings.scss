@@ -82,6 +82,12 @@
       border-top-right-radius: 3px;
     }
 
+    &:hover {
+      &:after {
+        background: #e3736c;
+      }
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -92,6 +98,32 @@
       width: 23px;
       height: 18px;
       z-index: 1;
+    }
+  }
+
+  &__tooltip  {
+    position: absolute;
+    width: 130px;
+    height: 16px;
+    top: 31px;
+    left: -150px;
+    background: $coral;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #fff;
+    font-family: Roboto,sans-serif;
+    font-weight: bold;
+    padding: 2px 4px;
+    text-shadow: 0 1px 0 #f87e76;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      border: 8px solid transparent;
+      border-left: 8px solid #f97e76;
+      top: 2px;
+      right: -16px;
     }
   }
 
@@ -374,7 +406,7 @@
   top: -9px;
   box-shadow: 0 2px 4px -2px rgba(0,0,0,.75);
 
-  &:hover, &:focus {
+  &:hover, &:active {
     &:after {
       background: #f97e76;
     }
