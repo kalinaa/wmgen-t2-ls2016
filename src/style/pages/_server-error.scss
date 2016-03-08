@@ -4,7 +4,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
-  display: none;
+  display: block;
   z-index: 100;
 }
 
@@ -52,4 +52,5 @@
   font-family: FiraSans,sans-serif;
   font-size: 15px;
   font-weight: bold;
+  text-decoration: none;
 }
