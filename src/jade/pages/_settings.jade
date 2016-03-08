@@ -5,11 +5,13 @@
       .download__img
         .input-wrap
           span.download__span(data-translate="mainImg") Исходное изображение
+          .download__tooltip Загрузите изображение
           label.download__label
             span.file-name
             input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
         .input-wrap#watermark-wrap
           span.download__span(data-translate="waterM") Водяной знак
+          .download__tooltip Загрузите изображение
           label.download__label
             span.file-name
             input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg" disabled).download__input

@@ -14,34 +14,89 @@
         $('.position__watermark-one').addClass('hide');
     });
 
+
+    $(document).on('click', '.social_share', function(){
+        Share.go(this);
+    });
     Share = {
-        vkontakte: function(purl, ptitle, pimg, text) {
-            url  = 'http://vkontakte.ru/share.php?';
-            url += 'url='          + encodeURIComponent(purl);
-            url += '&title='       + encodeURIComponent(ptitle);
-            url += '&description=' + encodeURIComponent(text);
-            url += '&image='       + encodeURIComponent(pimg);
-            url += '&noparse=true';
-            Share.popup(url);
+        go: function(_element, _options) {
+            var
+                self = Share,
+                options = $.extend(
+                    {
+                        type:       'vk',
+                        url:        location.href,
+                        count_url:  location.href,
+                        title:      document.title,
+                        image:        '',
+                        text:       ''
+                    },
+                    $(_element).data(),
+                    _options
+                );
+
+            if (self.popup(link = self[options.type](options)) === null) {
+                if ( $(_element).is('a') ) {
+                    $(_element).prop('href', link);
+                    return true;
+                }
+                else {
+                    location.href = link;
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
         },
-        facebook: function(purl, ptitle, pimg, text) {
-            url  = 'http://www.facebook.com/sharer.php?s=100';
-            url += '&p[title]='     + encodeURIComponent(ptitle);
-            url += '&p[summary]='   + encodeURIComponent(text);
-            url += '&p[url]='       + encodeURIComponent(purl);
-            url += '&p[images][0]=' + encodeURIComponent(pimg);
-            Share.popup(url);
+
+
+        vk: function(_options) {
+            var options = $.extend({
+                url:    location.href,
+                title:  document.title,
+                image:  '',
+                text:   ''
+            }, _options);
+
+            return 'http://vkontakte.ru/share.php?'
+                + 'url='          + encodeURIComponent(options.url)
+                + '&title='       + encodeURIComponent(options.title)
+                + '&description=' + encodeURIComponent(options.text)
+                + '&image='       + encodeURIComponent(options.image)
+                + '&noparse=true';
         },
-        twitter: function(purl, ptitle) {
-            url  = 'http://twitter.com/share?';
-            url += 'text='      + encodeURIComponent(ptitle);
-            url += '&url='      + encodeURIComponent(purl);
-            url += '&counturl=' + encodeURIComponent(purl);
-            Share.popup(url);
+
+        fb: function(_options) {
+            var options = $.extend({
+                url:    location.href,
+                title:  document.title,
+                image:  '',
+                text:   ''
+            }, _options);
+
+            return 'http://www.facebook.com/sharer.php?s=100'
+                + '&p[title]='     + encodeURIComponent(options.title)
+                + '&p[summary]='   + encodeURIComponent(options.text)
+                + '&p[url]='       + encodeURIComponent(options.url)
+                + '&p[images][0]=' + encodeURIComponent(options.image);
+        },
+
+        tw: function(_options) {
+            var options = $.extend({
+                url:        location.href,
+                count_url:  location.href,
+                title:      document.title,
+            }, _options);
+
+            return 'http://twitter.com/share?'
+                + 'text='      + encodeURIComponent(options.title)
+                + '&url='      + encodeURIComponent(options.url)
+                + '&counturl=' + encodeURIComponent(options.count_url);
         },
 
         popup: function(url) {
-            window.open(url,'','toolbar=0,status=0,width=626,height=436');
+            return window.open(url,'','toolbar=0,status=0,scrollbars=1,width=626,height=436');
         }
     };
 
