@@ -7,7 +7,11 @@
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
         widthMainImg,
-        heightMainImg;
+        heightMainImg,
+        noScaleWidthWM,
+        widthWM,
+        heightWM,
+        maxWidthWM;
 
     mainImg.fileupload({
         thumbnail:false,
@@ -24,14 +28,15 @@
                 alert(uploadErrors.join("\n"));
             } else {
                 data.submit();
-                console.log('Файл загружен')
             }
         },
         url: url,
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
-            $('#main-img').attr('src', data.result.files[0].url);   // передача адреса картинки в канву
+            $('#watermark-input').siblings('.file-name').text('');
+            $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
+            $('#watermark').removeAttr('src').hide();
             if ($('#watermark-input').prop('disabled')){
                 $('#watermark-input').prop('disabled', false);     // разблокировка второго input
                 $('#watermark-wrap').children('.disabled').removeClass('disabled');
@@ -47,6 +52,16 @@
                 }
             );
 
+            $('#main-img').load(function(){
+                if(widthMainImg && heightMainImg && widthWM && heightWM){
+                    if (widthWM > widthMainImg || heightWM > heightMainImg){
+                        imgSettings.containment = false;
+                    } else {
+                        imgSettings.containment = 'parent';
+                    }
+                    console.log(imgSettings.containment);
+                }
+            });
         },
         //включение анимации прогресса при загрузку тяжелых файлов
         progress: function (e, data) {
@@ -62,16 +77,17 @@
         heightMainImg = param.height;
         var widthScale = workAreaWidth/widthMainImg,
             heightScale = workAreaHeight/heightMainImg;
-        if (widthScale < 1 && heightScale < 1 && widthScale >= heightScale){
+        if (widthScale < 1 && heightScale < 1 && widthScale <= heightScale){
             imgSettings.generalScale = widthScale;
-            imgSettings.containment = 'parent';
-        } else if (widthScale < 1 && heightScale < 1 && widthScale < heightScale){
+        } else if (widthScale < 1 && heightScale < 1 && widthScale > heightScale){
             imgSettings.generalScale = heightScale;
-            imgSettings.containment = 'parent';
         } else {
             imgSettings.generalScale = 1;
-            imgSettings.containment = 'window';
         }
+    };
+
+    var getMaxWidthWM = function (){
+        maxWidthWM = noScaleWidthWM * imgSettings.generalScale;
     };
 
     watermark.fileupload({
@@ -85,13 +101,27 @@
                     url: data.result.files[0].url
                 },
                 function(answer){
-                    var param       = $.parseJSON(answer),
-                        maxWidth    = param.width * imgSettings.generalScale;
-                    $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidth + 'px'});
+                    var param = $.parseJSON(answer);
+                    noScaleWidthWM = param.width;
+                    getMaxWidthWM();
+                    $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
             );
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
-            $('#watermark').attr('src', data.result.files[0].url);
+            //$('#watermark').attr('src', data.result.files[0].url);
+            $('#watermark').load(function(){
+                var $this = $(this);
+
+                widthWM = $this.width();
+                heightWM = $this.height();
+                if(widthMainImg && heightMainImg && widthWM && heightWM){
+                    if (widthWM > widthMainImg || heightWM > heightMainImg){
+                        imgSettings.containment = false;
+                    } else {
+                        imgSettings.containment = 'parent';
+                    }
+                }
+            });
 
 
             disabledNode.each(function(){
