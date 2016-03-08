@@ -12,6 +12,7 @@
 //= partials/img-settings.js
 //= partials/styles.js
 //= partials/change-lang.js
+//= partials/tooltips.js
 //= partials/upload.js
 //= partials/opacity-slider.js
 //= partials/position.js

@@ -36,7 +36,7 @@ var position = (function () {
         };
 
         var _setUpListners = function () {
-            $('.img_small').on('mouseenter', _changePositionDrag);
+            $('.img_small').on('mousemove', _changePositionDrag);
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
                 $('.watermark-link').removeClass('watermark-link--active');

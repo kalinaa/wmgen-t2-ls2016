@@ -7,9 +7,11 @@
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
         downloadPopup = $('.download-popup'),
+        noScaleWidthMainImg,
+        noScaleHeightMainImg,
+        noScaleWidthWM,
         widthMainImg,
         heightMainImg,
-        noScaleWidthWM,
         widthWM,
         heightWM,
         maxWidthWM;
@@ -35,7 +37,13 @@
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
+            $('#main-img-input').parent().siblings('.download__tooltip').hide();
             $('#watermark-input').siblings('.file-name').val('');
+            $('#watermark-input').siblings('.file-name').text('');
+            disabledNode.each(function(){
+                $(this).addClass('disabled');
+                $('#watermark-input').prop('disabled', true);
+            });
             $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
             $('#watermark').removeAttr('src').hide();
             if ($('#watermark-input').prop('disabled')){
@@ -54,6 +62,10 @@
             );
 
             $('#main-img').load(function(){
+                var $this = $(this);
+
+                widthMainImg = $this.width();
+                heightMainImg = $this.height();
                 if(widthMainImg && heightMainImg && widthWM && heightWM){
                     if (widthWM > widthMainImg || heightWM > heightMainImg){
                         imgSettings.containment = false;
@@ -71,13 +83,13 @@
     });
 
     var getImgScale = function (param){
-        widthMainImg = param.width;
-        heightMainImg = param.height;
-        var widthScale = workAreaWidth/widthMainImg,
-            heightScale = workAreaHeight/heightMainImg;
-        if (widthScale < 1 && heightScale < 1 && widthScale <= heightScale){
+        noScaleWidthMainImg = param.width;
+        noScaleHeightMainImg = param.height;
+        var widthScale = workAreaWidth/noScaleWidthMainImg,
+            heightScale = workAreaHeight/noScaleHeightMainImg;
+        if (widthScale < 1 || heightScale < 1 && widthScale <= heightScale){
             imgSettings.generalScale = widthScale;
-        } else if (widthScale < 1 && heightScale < 1 && widthScale > heightScale){
+        } else if (widthScale < 1 || heightScale < 1 && widthScale > heightScale){
             imgSettings.generalScale = heightScale;
         } else {
             imgSettings.generalScale = 1;
@@ -106,6 +118,7 @@
                 }
             );
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
+            $('#watermark-input').parent().siblings('.download__tooltip').hide();
             $('#watermark').load(function(){
                 var $this = $(this);
 
@@ -119,8 +132,6 @@
                     }
                 }
             });
-
-
             disabledNode.each(function(){
                 $(this).removeClass('disabled');
             });
