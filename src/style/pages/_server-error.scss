@@ -9,9 +9,10 @@
 }
 
 .server__error-block {
+  display: table-cell;
+  vertical-align: middle;
   width: 125px;
   height: 111px;
-  float: left;
 }
 
 .server__error-img {
@@ -35,9 +36,10 @@
 }
 
 .server__error-text {
+  display: table-cell;
+  vertical-align: middle;
   font-size: 23px;
   font-family: Roboto, sans-serif;
-  float: left;
   width: 285px;
   color: #3b424d;
   font-weight: bold;
