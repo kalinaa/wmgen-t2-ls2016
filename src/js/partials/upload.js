@@ -6,6 +6,7 @@
         disabledNode = $('.disabled'),
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
+        downloadPopup = $('.download-popup'),
         widthMainImg,
         heightMainImg,
         noScaleWidthWM,
@@ -62,13 +63,11 @@
                     console.log(imgSettings.containment);
                 }
             });
+            downloadPopup.hide();
         },
         //включение анимации прогресса при загрузку тяжелых файлов
-        progress: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            if (progress != 100) {
-                console.log(progress);
-            }
+        progress: function () {
+            downloadPopup.show();
         }
     });
 
@@ -108,7 +107,6 @@
                 }
             );
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
-            //$('#watermark').attr('src', data.result.files[0].url);
             $('#watermark').load(function(){
                 var $this = $(this);
 
@@ -127,14 +125,11 @@
             disabledNode.each(function(){
                 $(this).removeClass('disabled');
             });
-
+            downloadPopup.hide();
         },
         //включение анимации прогресса при загрузку тяжелых файлов
-        progress: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            if (progress != 100) {
-                console.log(progress);
-            }
+        progress: function () {
+            downloadPopup.show();
         }
     });
 }());
