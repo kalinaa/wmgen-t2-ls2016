@@ -11,6 +11,8 @@
             opacity     : "Transparency",
             reset       : "Reset",
             download    : "Download",
+            tooltip     : "Download image",
+            error__modal: "Oops! Server don’t respond… Sorry, I ATE it!!!",
             copy        : "&copy; 2016, This is my website, please do not copy or steal it."
             },
 
@@ -23,6 +25,8 @@
             opacity     : "Прозрачность",
             reset       : "Сброс",
             download    : "Скачать",
+            error__modal: "К сожалению! Сервер не отвечает ... К сожалению, я съела !!!",
+            tooltip     : "Загрузите изображение",
             copy        : "&copy; 2016, Это мой сайт, пожалуйста, не копируйте и не воруйте его."
             }
 

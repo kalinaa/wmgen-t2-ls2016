@@ -13,7 +13,6 @@ var position = (function () {
 
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
-            console.log('click');
             var image = $('.img_small'),
                 info;
 
@@ -38,7 +37,7 @@ var position = (function () {
         };
 
         var _setUpListners = function () {
-            $('.img_small').on('mousemove', _changePositionDrag);
+            $('.img_small').on('click', _changePositionDrag);
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
                 $('.watermark-link').removeClass('watermark-link--active');
