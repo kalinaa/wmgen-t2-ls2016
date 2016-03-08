@@ -6,13 +6,14 @@ var position = (function () {
 
         var init = function () {
             _setUpListners();
-            //_changePositionDrag();
+            _changePositionDrag();
         };
 
 
 
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
+            console.log('click');
             var image = $('.img_small'),
                 info;
 
@@ -37,7 +38,7 @@ var position = (function () {
         };
 
         var _setUpListners = function () {
-            $('.img_small').on('mouseenter', _changePositionDrag);
+            $('.img_small').on('mousemove', _changePositionDrag);
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
                 $('.watermark-link').removeClass('watermark-link--active');
