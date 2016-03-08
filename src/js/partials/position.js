@@ -6,7 +6,6 @@ var position = (function () {
 
         var init = function () {
             _setUpListners();
-            _changePositionDrag();
         };
 
 
@@ -37,7 +36,7 @@ var position = (function () {
         };
 
         var _setUpListners = function () {
-            $('.img_small').on('click', _changePositionDrag);
+            $('.img_small').on('mousemove', _changePositionDrag);
             $('.watermark-link').on('click', function (e) {
                 e.preventDefault();
                 $('.watermark-link').removeClass('watermark-link--active');

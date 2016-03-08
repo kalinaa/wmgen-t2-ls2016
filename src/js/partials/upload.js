@@ -6,8 +6,15 @@
         disabledNode = $('.disabled'),
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
+        downloadPopup = $('.download-popup'),
+        noScaleWidthMainImg,
+        noScaleHeightMainImg,
+        noScaleWidthWM,
         widthMainImg,
-        heightMainImg;
+        heightMainImg,
+        widthWM,
+        heightWM,
+        maxWidthWM;
 
     mainImg.fileupload({
         thumbnail:false,
@@ -24,14 +31,21 @@
                 alert(uploadErrors.join("\n"));
             } else {
                 data.submit();
-                console.log('Файл загружен')
             }
         },
         url: url,
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
-            $('#main-img').attr('src', data.result.files[0].url);   // передача адреса картинки в канву
+            $('#main-img-input').parent().siblings('.download__tooltip').hide();
+            $('#watermark-input').siblings('.file-name').val('');
+            $('#watermark-input').siblings('.file-name').text('');
+            disabledNode.each(function(){
+                $(this).addClass('disabled');
+                $('#watermark-input').prop('disabled', true);
+            });
+            $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
+            $('#watermark').removeAttr('src').hide();
             if ($('#watermark-input').prop('disabled')){
                 $('#watermark-input').prop('disabled', false);     // разблокировка второго input
                 $('#watermark-wrap').children('.disabled').removeClass('disabled');
@@ -47,31 +61,43 @@
                 }
             );
 
+            $('#main-img').load(function(){
+                var $this = $(this);
+
+                widthMainImg = $this.width();
+                heightMainImg = $this.height();
+                if(widthMainImg && heightMainImg && widthWM && heightWM){
+                    if (widthWM > widthMainImg || heightWM > heightMainImg){
+                        imgSettings.containment = false;
+                    } else {
+                        imgSettings.containment = 'parent';
+                    }
+                }
+            });
+            downloadPopup.hide();
         },
         //включение анимации прогресса при загрузку тяжелых файлов
-        progress: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            if (progress != 100) {
-                console.log(progress);
-            }
+        progress: function () {
+            downloadPopup.show();
         }
     });
 
     var getImgScale = function (param){
-        widthMainImg = param.width;
-        heightMainImg = param.height;
-        var widthScale = workAreaWidth/widthMainImg,
-            heightScale = workAreaHeight/heightMainImg;
-        if (widthScale < 1 && heightScale < 1 && widthScale >= heightScale){
+        noScaleWidthMainImg = param.width;
+        noScaleHeightMainImg = param.height;
+        var widthScale = workAreaWidth/noScaleWidthMainImg,
+            heightScale = workAreaHeight/noScaleHeightMainImg;
+        if (widthScale < 1 || heightScale < 1 && widthScale <= heightScale){
             imgSettings.generalScale = widthScale;
-            imgSettings.containment = 'parent';
-        } else if (widthScale < 1 && heightScale < 1 && widthScale < heightScale){
+        } else if (widthScale < 1 || heightScale < 1 && widthScale > heightScale){
             imgSettings.generalScale = heightScale;
-            imgSettings.containment = 'parent';
         } else {
             imgSettings.generalScale = 1;
-            imgSettings.containment = 'window';
         }
+    };
+
+    var getMaxWidthWM = function (){
+        maxWidthWM = noScaleWidthWM * imgSettings.generalScale;
     };
 
     watermark.fileupload({
@@ -85,26 +111,35 @@
                     url: data.result.files[0].url
                 },
                 function(answer){
-                    var param       = $.parseJSON(answer),
-                        maxWidth    = param.width * imgSettings.generalScale;
-                    $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidth + 'px'});
+                    var param = $.parseJSON(answer);
+                    noScaleWidthWM = param.width;
+                    getMaxWidthWM();
+                    $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
             );
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
-            $('#watermark').attr('src', data.result.files[0].url);
+            $('#watermark-input').parent().siblings('.download__tooltip').hide();
+            $('#watermark').load(function(){
+                var $this = $(this);
 
-
+                widthWM = $this.width();
+                heightWM = $this.height();
+                if(widthMainImg && heightMainImg && widthWM && heightWM){
+                    if (widthWM > widthMainImg || heightWM > heightMainImg){
+                        imgSettings.containment = false;
+                    } else {
+                        imgSettings.containment = 'parent';
+                    }
+                }
+            });
             disabledNode.each(function(){
                 $(this).removeClass('disabled');
             });
-
+            downloadPopup.hide();
         },
         //включение анимации прогресса при загрузку тяжелых файлов
-        progress: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            if (progress != 100) {
-                console.log(progress);
-            }
+        progress: function () {
+            downloadPopup.show();
         }
     });
 }());

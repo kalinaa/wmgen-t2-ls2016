@@ -102,28 +102,30 @@
   }
 
   &__tooltip  {
+    display: none;
+    white-space: nowrap;
     position: absolute;
-    width: 130px;
     height: 16px;
-    top: 31px;
-    left: -150px;
+    top: 27px;
+    right: 100%;
+    margin-right: 8px;
     background: $coral;
     border-radius: 3px;
     font-size: 11px;
     color: #fff;
     font-family: Roboto,sans-serif;
     font-weight: bold;
-    padding: 2px 4px;
+    padding: 5px 8px 3px 8px;
     text-shadow: 0 1px 0 #f87e76;
 
     &:after {
       content: '';
       position: absolute;
       display: block;
-      border: 8px solid transparent;
+      border: 10px solid transparent;
       border-left: 8px solid #f97e76;
       top: 2px;
-      right: -16px;
+      right: -18px;
     }
   }
 

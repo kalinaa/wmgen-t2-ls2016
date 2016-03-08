@@ -7,13 +7,13 @@
           span.download__span(data-translate="mainImg") Исходное изображение
           .download__tooltip(data-translate="tooltip") Загрузите изображение
           label.download__label
-            span.file-name Image.jpg
+            span.file-name
             input(type="file" id="main-img-input" name="files[]" accept="image/*,image/jpeg").download__input
         .input-wrap#watermark-wrap
           span.download__span(data-translate="waterM") Водяной знак
           .download__tooltip(data-translate="tooltip") Загрузите изображение
           label.download__label
-            span.file-name Image.png
+            span.file-name
             input(type="file" id="watermark-input" name="files[]" accept="image/*,image/jpeg" disabled).download__input
           .disabled
     .position
@@ -98,10 +98,7 @@
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
-    //   .disabled
-        //===========================================
-        // убрано на время тестированя
-        //=============================================
+      .disabled
     .transparency
       .transparency__block
         span.download__span.download__span--transparency(data-translate="opacity") Прозрачность
