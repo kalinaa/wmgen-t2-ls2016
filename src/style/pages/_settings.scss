@@ -101,6 +101,32 @@
     }
   }
 
+  &__tooltip  {
+    position: absolute;
+    width: 130px;
+    height: 16px;
+    top: 31px;
+    left: -150px;
+    background: $coral;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #fff;
+    font-family: Roboto,sans-serif;
+    font-weight: bold;
+    padding: 2px 4px;
+    text-shadow: 0 1px 0 #f87e76;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      border: 8px solid transparent;
+      border-left: 8px solid #f97e76;
+      top: 2px;
+      right: -16px;
+    }
+  }
+
 }
 
 .position, .transparency
