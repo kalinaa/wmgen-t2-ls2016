@@ -93,7 +93,7 @@
     };
 
     var getMaxWidthWM = function (){
-        maxWidthWM = noScaleWidthWM * imgSettings.generalScale;
+        maxWidthWM = Math.round(noScaleWidthWM * imgSettings.generalScale);
     };
 
     watermark.fileupload({
