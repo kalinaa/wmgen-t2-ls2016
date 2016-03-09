@@ -1,8 +1,15 @@
 <?php
-   include('vendor/SimpleImage.php');
-   $url = $_POST[url];
-   $img = new abeautifulsite\SimpleImage($url);
-   $width = $img->get_width();
-   $height = $img->get_height();
-   $param = array('width' => $width, 'height' => $height);
-   exit(json_encode($param));
+	$image_get = false;
+	$image_width = 0;
+	$image_height = 0;
+
+	if (isset($_POST['$url'])) {
+		$url = $_POST['url'];
+		$image_get = true;
+		list($image_width, $image_height) = getimagesize($url);
+	}
+
+	$param = array('triger' => $image_get, 'width' => $image_width, 'height' => $image_height);
+
+	exit(json_encode($param));
+?>
