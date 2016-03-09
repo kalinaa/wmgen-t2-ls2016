@@ -2,6 +2,15 @@
     .server__error-main.clearfix#error-block
         .server__error-block
             img(src="../img/image.png").server__error-img
-        .server__error-text(data-translate="error__modal") Кажется, сcервер не отвечает... простите, но я его съела !!!
-        a(href="#").server__error-close#close-error X
+        .server__error-text(data-translate="error__modal") Кажется, cервер не отвечает... простите, но я его съела !!!
+        a(href="#").server__error-close X
+.server__error.file-error-wrap#file-size-error
+    .server__error-main.file-error.clearfix#error-size-block
+        .server__error-text(data-translate="errorsize__modal") Файл слишном большой. Пожалуйста загрузите файл не более 2мб!
+        a(href="#").server__error-close X
+.server__error.file-error-wrap#file-ext-error
+    .server__error-main.file-error.clearfix#error-ext-block
+        .server__error-text(data-translate="errorext__modal") Пожалуйста, загрузите изображение .jpeg, .jpg, .png, .gif!
+        a(href="#").server__error-close X
+
 

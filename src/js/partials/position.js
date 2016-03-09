@@ -60,9 +60,9 @@ var position = (function () {
                 var top = Math.round($('.img_small').offset().top).toFixed(0) - Math.round($('.img_big').offset().top).toFixed(0);
                 var left = Math.round($('.img_small').offset().left).toFixed(0) - Math.round($('.img_big').offset().left).toFixed(0);
 
-                ////передаем позицию по х и у в модуль настроек
-                //imgSettings.top = top;
-                //imgSettings.left = left;
+                //передаем позицию по х и у в модуль настроек
+                imgSettings.top = top;
+                imgSettings.left = left;
 
                 $('.input_x').val(left);
                 $('.input_y').val(top);

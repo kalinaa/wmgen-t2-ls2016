@@ -1,6 +1,6 @@
 .settings
   h2.settings__description#settings(data-translate="setting") Настройки
-  form(method="POST").settings__form
+  form(method="POST").settings__form#settings-form
     .download
       .download__img
         .input-wrap
@@ -49,13 +49,13 @@
           .watermark-property
             .position__gorizontal
               span.position__span X
-              input(type="text" name="text").position__input.input_x
+              input(type="text" name="positionX").position__input.input_x
               .position__coordinates
                 a(href="").position__top.top_x
                 a(href="").position__bottom.bottom_x
             .position__vertical
               span.position__span Y
-              input(type="text" name="text").position__input.input_y
+              input(type="text" name="positionY").position__input.input_y
               .position__coordinates
                 a(href="").position__top.top_y
                 a(href="").position__bottom.bottom_y
@@ -88,13 +88,13 @@
           .watermark-property
             .position__gorizontal
               span.position__name-plus X
-              input(type="text" name="text" value="0").position__input
+              input(type="text" name="padding-left").position__input
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
             .position__vertical
               span.position__name-minus Y
-              input(type="text" name="text" value="0").position__input
+              input(type="text" name="padding-top").position__input
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
