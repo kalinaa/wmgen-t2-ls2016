@@ -2,7 +2,7 @@
     'use strict';
     var mainImg      = $('#main-img-input'),
         watermark    = $('#watermark-input'),
-        url          = '../server/php/',
+        url = '../server/php/',
         disabledNode = $('.disabled'),
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
@@ -33,7 +33,7 @@
                 data.submit();
             }
         },
-        url: url,
+        url: url + '?folder=main',
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
@@ -57,6 +57,7 @@
                 },
                 function(answer){
                     var param = $.parseJSON(answer);
+                    console.log(param);
                     getImgScale(param);
                 }
             );
@@ -101,7 +102,7 @@
     };
 
     watermark.fileupload({
-        url: url,
+        url: url + '?folder=watermark',
         dataType: 'json',
         thumbnail: false,
         done: function (e, data) {
@@ -113,6 +114,7 @@
                 function(answer){
                     var param = $.parseJSON(answer);
                     noScaleWidthWM = param.width;
+                    console.log(param);
                     getMaxWidthWM();
                     $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
