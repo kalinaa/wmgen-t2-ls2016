@@ -53,7 +53,6 @@
                 },
                 function(answer){
                     var param = $.parseJSON(answer);
-                    console.log(param);
                     getImgScale(param);
                 }
             );
@@ -121,7 +120,6 @@
                 function(answer){
                     var param = $.parseJSON(answer);
                     noScaleWidthWM = param.width;
-                    console.log(param);
                     getMaxWidthWM();
                     $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
