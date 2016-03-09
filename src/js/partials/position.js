@@ -29,6 +29,11 @@ var position = (function () {
                     //Запись координатов с Draggable в input
                     var left = Math.round(ui.position.left).toFixed(0);
                     var top = Math.round(ui.position.top).toFixed(0);
+
+                    ////передаем позицию по х и у в модуль настроек
+                    //imgSettings.top = top;
+                    //imgSettings.left = left;
+
                     $('.input_x').val(left);
                     $('.input_y').val(top);
                     }
@@ -54,6 +59,10 @@ var position = (function () {
                 //поиск и вывод координатов водяного знака
                 var top = Math.round($('.img_small').offset().top).toFixed(0) - Math.round($('.img_big').offset().top).toFixed(0);
                 var left = Math.round($('.img_small').offset().left).toFixed(0) - Math.round($('.img_big').offset().left).toFixed(0);
+
+                ////передаем позицию по х и у в модуль настроек
+                //imgSettings.top = top;
+                //imgSettings.left = left;
 
                 $('.input_x').val(left);
                 $('.input_y').val(top);
@@ -116,6 +125,7 @@ var position = (function () {
                             }
                             else{
                                 newValue = +value + 1;
+                                //imgSettings.left = imgSettings.left + 1;
                             }
                         }
                         else if(axis == 'y'){
@@ -125,6 +135,7 @@ var position = (function () {
                             }
                             else{
                                 newValue = +value + 1;
+                                //imgSettings.top = imgSettings.top + 1;
                             }
                         }
                     }
