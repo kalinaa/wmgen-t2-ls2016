@@ -41,11 +41,12 @@ class UploadHandler
     protected $image_objects = array();
 
     function __construct($options = null, $initialize = true, $error_messages = null) {
+        global $folder;
         $this->response = array();
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.basename($this->get_server_var('SCRIPT_NAME')),
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
-            'upload_url' => $this->get_full_url().'/files/',
+            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/'.$folder.'/',
+            'upload_url' => $this->get_full_url().'/files/'.$folder.'/',
             'input_stream' => 'php://input',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
@@ -143,7 +144,7 @@ class UploadHandler
                     'max_height' => 600
                 ),
                 */
-                'thumbnail' => array(
+                /*'thumbnail' => array(
                     // Uncomment the following to use a defined directory for the thumbnails
                     // instead of a subdirectory based on the version identifier.
                     // Make sure that this directory doesn't allow execution of files if you
@@ -157,6 +158,7 @@ class UploadHandler
                     'max_width' => 80,
                     'max_height' => 80
                 )
+                */
             ),
             'print_response' => true
         );
@@ -1386,3 +1388,5 @@ class UploadHandler
     }
 
 }
+
+?>
