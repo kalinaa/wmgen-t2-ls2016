@@ -284,9 +284,12 @@
     background: url("../../img/sprite.png") no-repeat -40px -15px;
   }
 }
+.position__first--active{
+  background: url("../../img/sprite.png") no-repeat -40px -15px;
+}
 
 .position__second {
-  background: url("../../img/sprite.png") no-repeat -15px -34px;
+  background: url("../../img/sprite.png") no-repeat -40px -57px;
   width: 19px;
   height: 19px;
   display: inline-block;
@@ -296,7 +299,9 @@
     background: url("../../img/sprite.png") no-repeat  -40px -37px;
   }
 }
-
+.position__second--active{
+  background: url("../../img/sprite.png") no-repeat -15px -34px;  
+}
 .position__name {
   font-size: 24px;
 }
