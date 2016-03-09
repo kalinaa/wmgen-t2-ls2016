@@ -1,14 +1,13 @@
 <?php
 
-$image_path = 'server/php/files/';
+function clear_image_folder($path, $folder) {
+	$current_path = $path.$folder.'/';
 
-function clear($path) {
-	if (file_exists($path)) {
-	foreach (glob($path.'*') as $file) {
+	if (file_exists($current_path)) {
+	foreach (glob($current_path.'*') as $file) {
 		unlink($file);
 		}
 	}
 }
 
-clear($image_path);
 ?>

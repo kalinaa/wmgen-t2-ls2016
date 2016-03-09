@@ -2,7 +2,7 @@
     'use strict';
     var mainImg      = $('#main-img-input'),
         watermark    = $('#watermark-input'),
-        url          = '../server/php/',
+        url = '../server/php/index.php',
         disabledNode = $('.disabled');
     mainImg.fileupload({
         add: function(e, data) {
@@ -21,7 +21,7 @@
                 console.log('Файл загружен')
             }
         },
-        url: url,
+        url: url + '?folder=main',
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
@@ -40,7 +40,7 @@
         }
     });
     watermark.fileupload({
-        url: url,
+        url: url + '?folder=watermark',
         dataType: 'json',
         done: function (e, data) {
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
