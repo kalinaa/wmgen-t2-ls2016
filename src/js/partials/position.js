@@ -17,20 +17,22 @@ var position = (function () {
 
             image.draggable({
                 cursor: 'move',
-                // containment: imgSettings.containment,
+                containment: imgSettings.containment,
                 drag: function(event, ui) {
                     x = $('.img_big').width();
                     y = $('.img_big').height();
 
                     ui.position.left / 2;
                     ui.position.top / 2;
-
-                    $('.watermark-first').removeClass('watermark-link--active');
+                    
+                    if($('.position__second--active').length){
+                        $('.watermark-first').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
-                    var left = Math.round(ui.position.left).toFixed(0);
-                    var top = Math.round(ui.position.top).toFixed(0);
-                    $('.input_x').val(left);
-                    $('.input_y').val(top);
+                        var left = Math.round(ui.position.left).toFixed(0);
+                        var top = Math.round(ui.position.top).toFixed(0);
+                        $('.input_x').val(left);
+                        $('.input_y').val(top);
+                       }
                     }
                 });
         };
@@ -42,43 +44,70 @@ var position = (function () {
                 return false;
             }
             
-            var watermark = $('.watermark').eq(0);
+            $('.input_x-second').val(0);
+            $('.input_y-second').val(0);
             
-            $('.container_small-img').on('mousemove', _changePositionDrag);
-            var numWidth = Math.round($('.img_big').width() / $('.watermark').width());
-            var numHeight = Math.round($('.img_big').height() / $('.watermark').height());
+            var watermark = $('.img_small');
+                
+            for(var i = 1; i < watermark.length; i++){
+                watermark[i].remove();
+            }
+            
+            var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width());
+            console.log(numWidth);
+            var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height());
+            console.log(numHeight);
             var numWidthHeight = numWidth * numHeight;
+            console.log(numWidthHeight);
             var contWatermark;
             
-            $('.container_small-img').width(numWidth * ($('.watermark').width() + 0));
-            $('.container_small-img').height(numHeight * ($('.watermark').height() + 0));
+            $('.container_small-img').width(numWidth * ($('.img_small').width() + 0));
+            console.log($('.container_small-img').width());
+            $('.container_small-img').height(numHeight * ($('.img_small').height() + 0));
+            console.log($('.container_small-img').height());
             
-             $('.container_small-img').css({
-                    'float': "left"
+            $('.img_small').eq(0).css({
+                    'display': 'block',
+                    'float': 'left',
+                    'margin-left': 0,
+                    'margin-bottom': 0
                 });
-            for (var i = 0; i < numWidthHeight; i++) {
-                contWatermark = $('.watermark').clone();
+            
+            for (var i = 1; i < numWidthHeight; i++) {
+                contWatermark = $('.img_small').eq(0).clone();
                 
                 contWatermark.css({
                     'display': 'block',
                     'float': 'left',
                     'margin-left': 0,
-                    'margin-bottom': 0,
+                    'margin-bottom': 0
                 });
-                
                 $('.container_small-img').append(contWatermark);
             }
-            return watermark;
+            
         }
-        
+        //Запуск draggeble
+        $('.container_small-img').on('mousemove', function(){
+            if($('.position__second--active').length){
+                if(imgSettings.containment == false){
+                    imgSettings.containment = 'parent';
+                }          
+              $('.container_small-img').on('mousemove', _changePositionDrag);
+            }
+            else if($('.position__first--active').length){
+              imgSettings.containment = false;
+              $('.container_small-img').on('mousemove', _changePositionDrag); 
+            }
+        });
+
         //страница позиционированния
         var _setUpListners = function () {
             if($('.position__first--active').length){
                 return false;
             }
             
-            $('.container_small-img').on('mousemove', _changePositionDrag);
-            
+            $('.input_x').val(0);
+            $('.input_y').val(0);          
             
             $('.position__first').on('click', function(e){
                 e.preventDefault();
@@ -88,7 +117,13 @@ var position = (function () {
                 $(this).addClass('position__first--active');
                 $('.position__second').removeClass('position__second--active');
                 _watermarkPage1();
-
+                $('.container_small-img').position({
+                    my: 'left top',
+                    at: 'left top',  
+                    collision: 'none none',
+                    of: '.img_big' 
+                });
+                
             });
 
             $('.position__second').on('click', function(e){
@@ -100,15 +135,30 @@ var position = (function () {
                 $('.position__first').removeClass('position__first--active');
                 
                 remove();
-
+                $('.container_small-img').position({
+                    my: 'left top',
+                    at: 'left top',  
+                    collision: 'none none',
+                    of: '.img_big' 
+                });
+                $('.input_x').val(0);
+                $('.input_y').val(0);
             });
             
             function remove(){
-                var watermark = $('.watermark');
+                var watermark = $('.img_small');
                 
                 for(var i = 1; i < watermark.length; i++){
                     watermark[i].remove();
                 }
+                
+                var container = $('.container_small-img');
+                var img = $('.img_small');
+                
+                container.css({
+                    'width': 'auto',
+                    'height': 'auto'
+                });
             }
             
             $('.watermark-first').on('click', function (e) {
