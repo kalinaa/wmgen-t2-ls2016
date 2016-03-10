@@ -12,12 +12,12 @@ var position = (function () {
 
             // Смена координат с помощью мыши
         var _changePositionDrag = function() {
-            var image = $('.img_small'),
+            var image = $('.container_small-img'),
                 info;
 
             image.draggable({
                 cursor: 'move',
-                containment: imgSettings.containment,
+                // containment: imgSettings.containment,
                 drag: function(event, ui) {
                     x = $('.img_big').width();
                     y = $('.img_big').height();
@@ -25,7 +25,7 @@ var position = (function () {
                     ui.position.left / 2;
                     ui.position.top / 2;
 
-                    $('.watermark-link').removeClass('watermark-link--active');
+                    $('.watermark-first').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
                     var left = Math.round(ui.position.left).toFixed(0);
                     var top = Math.round(ui.position.top).toFixed(0);
@@ -34,16 +34,90 @@ var position = (function () {
                     }
                 });
         };
-
+        
+        //страница замощенния
+        var _watermarkPage1 = function () {
+            
+            if($('.position__second--active').length){
+                return false;
+            }
+            
+            var watermark = $('.watermark').eq(0);
+            
+            $('.container_small-img').on('mousemove', _changePositionDrag);
+            var numWidth = Math.round($('.img_big').width() / $('.watermark').width());
+            var numHeight = Math.round($('.img_big').height() / $('.watermark').height());
+            var numWidthHeight = numWidth * numHeight;
+            var contWatermark;
+            
+            $('.container_small-img').width(numWidth * ($('.watermark').width() + 0));
+            $('.container_small-img').height(numHeight * ($('.watermark').height() + 0));
+            
+             $('.container_small-img').css({
+                    'float': "left"
+                });
+            for (var i = 0; i < numWidthHeight; i++) {
+                contWatermark = $('.watermark').clone();
+                
+                contWatermark.css({
+                    'display': 'block',
+                    'float': 'left',
+                    'margin-left': 0,
+                    'margin-bottom': 0,
+                });
+                
+                $('.container_small-img').append(contWatermark);
+            }
+            return watermark;
+        }
+        
+        //страница позиционированния
         var _setUpListners = function () {
-            $('.img_small').on('mousemove', _changePositionDrag);
-            $('.watermark-link').on('click', function (e) {
+            if($('.position__first--active').length){
+                return false;
+            }
+            
+            $('.container_small-img').on('mousemove', _changePositionDrag);
+            
+            
+            $('.position__first').on('click', function(e){
                 e.preventDefault();
-                $('.watermark-link').removeClass('watermark-link--active');
+        
+                $('.position__watermark-second').removeClass('hide');
+                $('.position__watermark-one').addClass('hide');
+                $(this).addClass('position__first--active');
+                $('.position__second').removeClass('position__second--active');
+                _watermarkPage1();
+
+            });
+
+            $('.position__second').on('click', function(e){
+                e.preventDefault();
+
+                $('.position__watermark-one').removeClass('hide');
+                $('.position__watermark-second').addClass('hide');
+                $(this).addClass('position__second--active');
+                $('.position__first').removeClass('position__first--active');
+                
+                remove();
+
+            });
+            
+            function remove(){
+                var watermark = $('.watermark');
+                
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+            }
+            
+            $('.watermark-first').on('click', function (e) {
+                e.preventDefault();
+                $('.watermark-first').removeClass('watermark-link--active');
                 $(this).addClass('watermark-link--active');
                 var pos = $(this).data("pos");
 
-                $('.img_small').position({
+                $('.container_small-img').position({
                     my: pos,  // место на позиционируемом элементе
                     at: pos,  // место на элементе относительно которого будет позиционирование
                     collision: 'none none',
@@ -52,22 +126,22 @@ var position = (function () {
 
 
                 //поиск и вывод координатов водяного знака
-                var top = Math.round($('.img_small').offset().top).toFixed(0) - Math.round($('.img_big').offset().top).toFixed(0);
-                var left = Math.round($('.img_small').offset().left).toFixed(0) - Math.round($('.img_big').offset().left).toFixed(0);
+                var top = Math.round($('.img_small').offset().top) - Math.round($('.img_big').offset().top);
+                var left = Math.round($('.img_small').offset().left) - Math.round($('.img_big').offset().left);
 
                 $('.input_x').val(left);
-                $('.input_y').val(top);
+                $('.input_y').val(top);               
             });
 
             //задает положение через ввод данных в input по оси Х
-            inputXY ($('.input_x'), $('.img_small'), 'left', 'x');
+            inputXY ($('.input_x'), $('.container_small-img'), 'left', 'x');
 
             //задает положение через ввод данных в input по оси Y
-            inputXY ($('.input_y'), $('.img_small'), 'top', 'y');
+            inputXY ($('.input_y'), $('.container_small-img'), 'top', 'y');
 
             function inputXY (input, img, position, axis) {
                 input.on('keyup', function () {
-                    $('.watermark-link').removeClass('watermark-link--active');
+                    $('.watermark-first').removeClass('watermark-link--active');
                     var value = input.val();
                     if(axis == 'x'){
                         var maxValueX = $('.img_big').width() - $('.img_small').width();
@@ -104,7 +178,7 @@ var position = (function () {
             function buttons (object, input, position, math, axis){
                 object.on('click', function (e) {
                     e.preventDefault();
-                    $('.watermark-link').removeClass('watermark-link--active');
+                    $('.watermark-first').removeClass('watermark-link--active');
                     var value = input.val();
                     var newValue;
 
@@ -137,11 +211,12 @@ var position = (function () {
                         }
                     }
                     input.val(newValue);
-                    $('.img_small').css(position, newValue + 'px' );
+                    $('.container_small-img').css(position, newValue + 'px' );
                 });
             }
         };
-
+        
+        
 
 
         return {
@@ -149,4 +224,5 @@ var position = (function () {
         }
     })();
 
-    position.init();
+        position.init();
+
