@@ -25,7 +25,7 @@
     position: absolute;
     content: '';
     display: block;
-    background: url("../../img/sprite.png") no-repeat  -16px -20px;
+    background: url("../../img/sprite.png") no-repeat  -20px -20px;
     width: 17px;
     height: 11px;
     bottom: -11px;
@@ -92,7 +92,7 @@
       content: '';
       position: absolute;
       display: block;
-      background: url("../../img/sprite.png") no-repeat  1px 0;
+      background: url("../../img/sprite.png") no-repeat  -2px 0;
       top: 3px;
       right: 7px;
       width: 23px;
@@ -307,30 +307,39 @@
 }
 
 .position__first {
-  background: url("../../img/sprite.png") no-repeat -15px -57px;
+  background: url("../../img/sprite.png") no-repeat -19px -57px;
   width: 19px;
   height: 19px;
   display: inline-block;
-
-  /*&:hover {
-    background: url("../../img/sprite.png") no-repeat -40px -15px;
-  }*/
+  &:hover {
+    background: url("../../img/sprite.png") no-repeat 0 -71px;
+  }
 }
 
 .active-first {
-  background: url("../../img/sprite.png") no-repeat -40px -15px;
+  background: url("../../img/sprite.png") no-repeat -44px -15px;
+  &:hover {
+    background: url("../../img/sprite.png") no-repeat -44px -15px;;
+  }
 }
 
 .active-second {
-  background: url("../../img/sprite.png") no-repeat -15px -34px;
+  background: url("../../img/sprite.png") no-repeat -19px -34px!important;
+  &:hover {
+    background: none;
+  }
 }
 
 .position__second {
-  background: url("../../img/sprite.png") no-repeat -40px -57px;
+  background: url("../../img/sprite.png") no-repeat -44px -57px;
   width: 19px;
   height: 19px;
   display: inline-block;
   margin-left: 10px;
+
+  &:hover {
+    background: url("../../img/sprite.png") no-repeat -44px -37px;
+  }
 
 }
 
@@ -474,7 +483,7 @@
     position: absolute;
     content: '';
     display: block;
-    background: url('../../img/sprite.png') no-repeat  -16px -20px;
+    background: url('../../img/sprite.png') no-repeat  -20px -20px;
     width: 17px;
     height: 11px;
     bottom: -11px;
@@ -488,7 +497,7 @@
     position: absolute;
     content: '';
     display: block;
-    background: url('../../img/sprite.png') no-repeat  -16px -20px;
+    background: url('../../img/sprite.png') no-repeat  -20px -20px;
     width: 17px;
     height: 11px;
     bottom: -11px;
