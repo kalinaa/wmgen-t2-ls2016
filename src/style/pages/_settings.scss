@@ -315,6 +315,9 @@
     background: url("../../img/sprite.png") no-repeat 0 -71px;
   }
 }
+.position__first--active{
+  background: url("../../img/sprite.png") no-repeat -40px -15px;
+}
 
 .active-first {
   background: url("../../img/sprite.png") no-repeat -44px -15px;
@@ -342,7 +345,9 @@
   }
 
 }
-
+.position__second--active{
+  background: url("../../img/sprite.png") no-repeat -15px -34px;  
+}
 .position__name {
   font-size: 24px;
 }

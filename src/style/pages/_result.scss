@@ -30,15 +30,27 @@
     left:50%;
     transform: translate(-50%, -50%);
 }
-
+.container_small-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+.watermark{
+    float: left;
+    top: 0;
+    left: 0;
+}
 .img_big{
     max-width: 650px;
     max-height: 534px;
     display: block;
 }
 .img_small{
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
+    float: left;
+    margin-left: 0;
+    margin-bottom: 0;
     cursor: move;
 }

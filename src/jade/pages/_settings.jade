@@ -20,32 +20,32 @@
       .position__block
         span.position__description(data-translate="position") Положение
         .position__button
-          a(href="#").position__first.active-first
-          a(href="#").position__second
+          a(href="#").position__first
+          a(href="#").position__second.position__second--active
         .position__watermark-one.clearfix
           .watermark-wrap
             .watermark-table
               .watermark-row
                 .watermark-col
-                  a(href="#" data-pos="left top").watermark-link
+                  a(href="#" data-pos="left top").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="center top").watermark-link
+                  a(href="#" data-pos="center top").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="right top").watermark-link
+                  a(href="#" data-pos="right top").watermark-link.watermark-first
               .watermark-row
                 .watermark-col
-                  a(href="#" data-pos="left center").watermark-link
+                  a(href="#" data-pos="left center").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="center center").watermark-link
+                  a(href="#" data-pos="center center").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="right center").watermark-link
+                  a(href="#" data-pos="right center").watermark-link.watermark-first
               .watermark-row
                 .watermark-col
-                  a(href="#" data-pos="left bottom").watermark-link
+                  a(href="#" data-pos="left bottom").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="center bottom").watermark-link
+                  a(href="#" data-pos="center bottom").watermark-link.watermark-first
                 .watermark-col
-                  a(href="#" data-pos="right bottom").watermark-link
+                  a(href="#" data-pos="right bottom").watermark-link.watermark-first
           .watermark-property
             .position__gorizontal
               span.position__span X
@@ -88,17 +88,19 @@
           .watermark-property
             .position__gorizontal
               span.position__name-plus X
-              input(type="text" name="padding-left").position__input
+              input(type="text" name="padding-left").position__input.input_x-second
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
             .position__vertical
               span.position__name-minus Y
-              input(type="text" name="padding-top").position__input
+              input(type="text" name="padding-top").position__input.input_y-second
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
-      .disabled
+    //   .disabled
+    //Убрано на времятестирования
+    //==========================
     .transparency
       .transparency__block
         span.download__span.download__span--transparency(data-translate="opacity") Прозрачность

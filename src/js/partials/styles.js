@@ -19,6 +19,7 @@
         $('.position__watermark-second').removeClass('hide');
         $('.position__watermark-one').addClass('hide');
     });
+
     $(document).on('click', '.social_share', function(){
         Share.go(this);
     });
