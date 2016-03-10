@@ -53,17 +53,16 @@ var position = (function () {
             for(var i = 1; i < watermark.length; i++){
                 watermark[i].remove();
             }
-            reprod(0, 0);
+            reprod();
             
-            function reprod(bottom, left) {
+            function reprod() {
                 var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width());
                 var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height());
                 var numWidthHeight = numWidth * numHeight;
                 var contWatermark;
-            
-                $('.container_small-img').width(numWidth * ($('.img_small').width() + left));
-                $('.container_small-img').height(numHeight * ($('.img_small').height() + bottom));            
-            
+                $('.container_small-img').width(Math.ceil(numWidth * ($('.img_small').width() + 0)));
+                $('.container_small-img').height(Math.ceil(numHeight * ($('.img_small').height() + 0)));            
+
                 for (var i = 1; i < numWidthHeight; i++) {
                     contWatermark = $('.img_small').eq(0).clone();
       
@@ -75,22 +74,21 @@ var position = (function () {
             //инпуты в блоке замощенния
             $('.input_x-second').on('keyup', function () {
                 var bottom = $('.input_x-second').val();
-                var left = $('.input_y-second').val();
                 
                 for(var i = 1; i < watermark.length; i++){
                     watermark[i].remove();
                 }
-                reprod(bottom, left);
+                $('.container_small-img').css('height', '0px');
+                var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
+                $('.container_small-img').css('height', height+'px');
                 $('.img_small').css('margin-bottom', bottom + 'px');
             });
             $('.input_y-second').on('keyup', function () {
-                var bottom = $('.input_x-second').val();
                 var left = $('.input_y-second').val();
-
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                reprod(bottom, left);
+                
+                $('.container_small-img').css('width', '0px');
+                var width = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +left);
+                $('.container_small-img').css('width', width+'px');
                 $('.img_small').css('margin-left', left + 'px');
             });
             
