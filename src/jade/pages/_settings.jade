@@ -1,6 +1,6 @@
 .settings
   h2.settings__description#settings(data-translate="setting") Настройки
-  form(method="POST").settings__form
+  form(method="POST").settings__form#settings-form
     .download
       .download__img
         .input-wrap
@@ -20,8 +20,13 @@
       .position__block
         span.position__description(data-translate="position") Положение
         .position__button
+<<<<<<< HEAD
           a(href="#").position__first
           a(href="#").position__second.position__second--active
+=======
+          a(href="#").position__first.active-first
+          a(href="#").position__second
+>>>>>>> 97ca15dfd09adb7307f2120ac023186bf709be1f
         .position__watermark-one.clearfix
           .watermark-wrap
             .watermark-table
@@ -49,13 +54,21 @@
           .watermark-property
             .position__gorizontal
               span.position__span X
+<<<<<<< HEAD
               input(type="text" name="text").position__input.input_x
+=======
+              input(type="text" name="positionX").position__input.input_x
+>>>>>>> 97ca15dfd09adb7307f2120ac023186bf709be1f
               .position__coordinates
                 a(href="").position__top.top_x
                 a(href="").position__bottom.bottom_x
             .position__vertical
               span.position__span Y
+<<<<<<< HEAD
               input(type="text" name="text").position__input.input_y
+=======
+              input(type="text" name="positionY").position__input.input_y
+>>>>>>> 97ca15dfd09adb7307f2120ac023186bf709be1f
               .position__coordinates
                 a(href="").position__top.top_y
                 a(href="").position__bottom.bottom_y
@@ -88,13 +101,13 @@
           .watermark-property
             .position__gorizontal
               span.position__name-plus X
-              input(type="text" name="text").position__input.input_x-second
+              input(type="text" name="padding-left").position__input.input_x-second
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom
             .position__vertical
               span.position__name-minus Y
-              input(type="text" name="text").position__input.input_y-second
+              input(type="text" name="padding-top").position__input.input_y-second
               .position__coordinates
                 a(href="").position__top
                 a(href="").position__bottom

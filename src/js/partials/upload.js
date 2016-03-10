@@ -2,7 +2,7 @@
     'use strict';
     var mainImg      = $('#main-img-input'),
         watermark    = $('#watermark-input'),
-        url          = '../server/php/',
+        url = '../server/php/',
         disabledNode = $('.disabled'),
         workAreaWidth = $('.result__block').width(),
         workAreaHeight = $('.result__block').height(),
@@ -19,21 +19,17 @@
     mainImg.fileupload({
         thumbnail:false,
         add: function(e, data) {
-            var uploadErrors = [];
             var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
             if(!acceptFileTypes.test(data.originalFiles[0].type)) {
-                uploadErrors.push('Загрузите картинку');
+                $('#file-ext-error').show().children('.server__error-main').slideDown();
             }
-            if(data.originalFiles[0].size > 2000000) {
-                uploadErrors.push('Файл слишком большой');
-            }
-            if(uploadErrors.length > 0) {
-                alert(uploadErrors.join("\n"));
+            else if(data.originalFiles[0].size > 2000000) {
+                $('#file-size-error').show().children('.server__error-main').slideDown();
             } else {
                 data.submit();
             }
         },
-        url: url,
+        url: url + '?folder=main',
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
@@ -101,9 +97,20 @@
     };
 
     watermark.fileupload({
-        url: url,
+        url: url + '?folder=watermark',
         dataType: 'json',
         thumbnail: false,
+        add: function(e, data) {
+            var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
+            if(!acceptFileTypes.test(data.originalFiles[0].type)) {
+                $('#file-ext-error').show().children('.server__error-main').slideDown();
+            }
+            else if(data.originalFiles[0].size > 2000000) {
+                $('#file-size-error').show().children('.server__error-main').slideDown();
+            } else {
+                data.submit();
+            }
+        },
         done: function (e, data) {
             $.post(
                 '../server/php/getsize.php',

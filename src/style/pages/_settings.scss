@@ -250,6 +250,22 @@
     top: -40px;
     left: 64px;
   }
+
+  &:hover {
+    &:after {
+      background: url("../../img/sprite.png") no-repeat -39px -79px;
+      width: 16px;
+      height: 10px;
+    }
+  }
+
+  &:active {
+    &:after {
+      background: url('../../img/sprite.png')  no-repeat 0px -49px;
+      width: 15px;
+      height: 10px;
+    }
+  }
 }
 .position__bottom {
   display: block;
@@ -263,6 +279,22 @@
     height: 8px;
     left: 64px;
     top: -12px;
+  }
+
+  &:hover {
+    &:after {
+      background: url("../../img/sprite.png") no-repeat -17px -78px;
+      width: 16px;
+      height: 10px;
+    }
+  }
+
+  &:active {
+    &:after {
+      background: url('../../img/sprite.png')  no-repeat -1px -36px;
+      width: 14px;
+      height: 10px;
+    }
   }
 }
 
@@ -280,12 +312,20 @@
   height: 19px;
   display: inline-block;
 
-  &:hover {
+  /*&:hover {
     background: url("../../img/sprite.png") no-repeat -40px -15px;
-  }
+  }*/
 }
 .position__first--active{
   background: url("../../img/sprite.png") no-repeat -40px -15px;
+}
+
+.active-first {
+  background: url("../../img/sprite.png") no-repeat -40px -15px;
+}
+
+.active-second {
+  background: url("../../img/sprite.png") no-repeat -15px -34px;
 }
 
 .position__second {
@@ -295,9 +335,6 @@
   display: inline-block;
   margin-left: 10px;
 
-  &:hover {
-    background: url("../../img/sprite.png") no-repeat  -40px -37px;
-  }
 }
 .position__second--active{
   background: url("../../img/sprite.png") no-repeat -15px -34px;  

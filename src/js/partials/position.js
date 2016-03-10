@@ -28,6 +28,7 @@ var position = (function () {
                     if($('.position__second--active').length){
                         $('.watermark-first').removeClass('watermark-link--active');
                     //Запись координатов с Draggable в input
+
                         var left = Math.round(ui.position.left).toFixed(0);
                         var top = Math.round(ui.position.top).toFixed(0);
                         $('.input_x').val(left);
@@ -187,6 +188,10 @@ var position = (function () {
                 var top = Math.round($('.img_small').offset().top) - Math.round($('.img_big').offset().top);
                 var left = Math.round($('.img_small').offset().left) - Math.round($('.img_big').offset().left);
 
+                //передаем позицию по х и у в модуль настроек
+                imgSettings.top = top;
+                imgSettings.left = left;
+
                 $('.input_x').val(left);
                 $('.input_y').val(top);               
             });
@@ -248,6 +253,7 @@ var position = (function () {
                             }
                             else{
                                 newValue = +value + 1;
+                                //imgSettings.left = imgSettings.left + 1;
                             }
                         }
                         else if(axis == 'y'){
@@ -257,6 +263,7 @@ var position = (function () {
                             }
                             else{
                                 newValue = +value + 1;
+                                //imgSettings.top = imgSettings.top + 1;
                             }
                         }
                     }
