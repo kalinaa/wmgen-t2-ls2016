@@ -130,7 +130,7 @@ var position = (function () {
                     collision: 'none none',
                     of: '.img_big' 
                 });
-                
+                imgSettings.tilling = true;                
             });
 
             $('.position__second').on('click', function(e){
@@ -150,6 +150,7 @@ var position = (function () {
                 });
                 $('.input_x').val(0);
                 $('.input_y').val(0);
+                imgSettings.tilling = false;
             });
             
             function remove(){
