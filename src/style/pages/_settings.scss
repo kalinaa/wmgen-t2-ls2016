@@ -311,10 +311,6 @@
   width: 19px;
   height: 19px;
   display: inline-block;
-
-  /*&:hover {
-    background: url("../../img/sprite.png") no-repeat -40px -15px;
-  }*/
 }
 
 .active-first {
@@ -322,7 +318,7 @@
 }
 
 .active-second {
-  background: url("../../img/sprite.png") no-repeat -15px -34px;
+  background: url("../../img/sprite.png") no-repeat -15px -34px!important;
 }
 
 .position__second {

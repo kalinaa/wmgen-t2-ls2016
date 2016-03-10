@@ -4,7 +4,7 @@
         e.preventDefault();
 
         $(this).addClass('active-first');
-        $('.position__second').removeClass('.active-second');
+        $('.position__second').removeClass('active-second');
 
         $('.position__watermark-one').removeClass('hide');
         $('.position__watermark-second').addClass('hide');
@@ -14,7 +14,7 @@
         e.preventDefault();
 
         $(this).addClass('active-second');
-        $('.position__first').removeClass('.active-first');
+        $('.position__first').removeClass('active-first');
 
         $('.position__watermark-second').removeClass('hide');
         $('.position__watermark-one').addClass('hide');
