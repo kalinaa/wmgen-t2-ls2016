@@ -4,13 +4,12 @@
         e.preventDefault();
         $.ajax({
             type        : 'post',
-            url         : '../server/php/download.php',
+            url         : '../server/php/getimage.php',
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
             success     : function(answer){
                 var param = $.parseJSON(answer),
                     link = document.getElementById('hidden-link');
                 link.setAttribute('href', param.url);
-                link.setAttribute('download','marked');
                 if (param.flag){
                     link.click();
                 } else {

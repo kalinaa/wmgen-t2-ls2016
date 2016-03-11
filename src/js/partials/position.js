@@ -92,13 +92,13 @@ var position = (function () {
                 $('.img_small').css('margin-left', left + 'px');
             });
             
-        }
+        };
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
                 if(imgSettings.containment == false){
                     imgSettings.containment = 'parent';
-                }          
+                }
               $('.container_small-img').on('mousemove', _changePositionDrag);
             }
             else if($('.position__first--active').length){

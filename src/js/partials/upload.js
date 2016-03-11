@@ -41,7 +41,36 @@
                 $('#watermark-input').prop('disabled', true);
             });
             $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
-            $('#watermark').removeAttr('src').hide();
+            imgSettings.tilling = false;
+            $("<img alt='Водяной знак' src='' id='watermark' class='img_small'>").replaceAll('.img_small').hide();
+            remove();
+            $('.container_small-img').position({
+                my: 'left top',
+                at: 'left top',
+                collision: 'none none',
+                of: '.img_big'
+            });
+            $('.input_x').val(0);
+            $('.input_y').val(0);
+
+            function remove(){
+                var watermark = $('.img_small');
+
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+
+                $("<img alt='Водяной знак' src='' id='watermark' class='img_small'>").replaceAll('.img_small').hide();
+
+                var container = $('.container_small-img');
+
+                container.css({
+                    'width': 'auto',
+                    'height': 'auto'
+                });
+            };
+            $('.position__second').addClass('position__second--active');
+            $('.position__first').removeClass('position__first--active');
             if ($('#watermark-input').prop('disabled')){
                 $('#watermark-input').prop('disabled', false);     // разблокировка второго input
                 $('#watermark-wrap').children('.disabled').removeClass('disabled');
@@ -124,6 +153,34 @@
                     $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
             );
+            remove();
+            $('.container_small-img').position({
+                my: 'left top',
+                at: 'left top',
+                collision: 'none none',
+                of: '.img_big'
+            });
+            $('.input_x').val(0);
+            $('.input_y').val(0);
+
+            function remove(){
+                var watermark = $('.img_small');
+
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+
+                $("<img alt='Водяной знак' src='' id='watermark' class='img_small'>").replaceAll('.img_small').hide();
+
+                var container = $('.container_small-img');
+
+                container.css({
+                    'width': 'auto',
+                    'height': 'auto'
+                });
+            };
+            $('.position__second').addClass('position__second--active');
+            $('.position__first').removeClass('position__first--active');
             $('#watermark-input').siblings('.file-name').text(data.result.files[0].name);
             $('#watermark-input').parent().siblings('.download__tooltip').hide();
             $('#watermark').load(function(){
