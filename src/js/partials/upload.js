@@ -33,6 +33,7 @@
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
+            console.log(data.result.files[0].name);
             $('#main-img-input').parent().siblings('.download__tooltip').hide();
             $('#watermark-input').siblings('.file-name').val('');
             $('#watermark-input').siblings('.file-name').text('');

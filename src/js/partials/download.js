@@ -7,11 +7,9 @@
             url         : '../server/php/getimage.php',
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
             success     : function(answer){
-                var param = $.parseJSON(answer),
-                    link = document.getElementById('hidden-link');
-                link.setAttribute('href', param.url);
+                var param = $.parseJSON(answer);
                 if (param.flag){
-                    link.click();
+                    $('body').append('<iframe src="server/php/download.php" class="frame"></iframe>');
                 } else {
                     $('#server-error').show().children('.server__error-main').slideDown();
                 }
