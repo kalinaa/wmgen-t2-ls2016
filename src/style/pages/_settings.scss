@@ -319,14 +319,14 @@
   }
 }
 
-.active-first {
+.position__first--active{
   background: url("../../img/sprite.png") no-repeat -44px -15px;
   &:hover {
     background: url("../../img/sprite.png") no-repeat -44px -15px;;
   }
 }
 
-.active-second {
+.position__second--active{
   background: url("../../img/sprite.png") no-repeat -19px -34px!important;
   &:hover {
     background: none;
