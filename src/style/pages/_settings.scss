@@ -59,7 +59,7 @@
     display: block;
     cursor: pointer;
     box-sizing: border-box;
-    padding: 3px 5px;
+    padding: 3px 44px 3px 5px;
     color: $gray;
     font-size: 12px;
     position: relative;
@@ -194,7 +194,7 @@
 }
 //подключается через js
 .watermark-link--active{
-    background: $coral;
+  background: $coral;
 }
 
 .watermark-property {
@@ -253,17 +253,19 @@
 
   &:hover {
     &:after {
-      background: url("../../img/sprite.png") no-repeat -39px -79px;
+      background: url("../../img/sprite.png") no-repeat -40px -79px;
       width: 16px;
       height: 10px;
+      left: 62px;
     }
   }
 
   &:active {
     &:after {
-      background: url('../../img/sprite.png')  no-repeat 0px -49px;
+      background: url('../../img/sprite.png')  no-repeat -4px -48px;
       width: 15px;
       height: 10px;
+      left: 63px;
     }
   }
 }
@@ -283,7 +285,7 @@
 
   &:hover {
     &:after {
-      background: url("../../img/sprite.png") no-repeat -17px -78px;
+      background: url("../../img/sprite.png") no-repeat -22px -78px;
       width: 16px;
       height: 10px;
     }
@@ -291,9 +293,10 @@
 
   &:active {
     &:after {
-      background: url('../../img/sprite.png')  no-repeat -1px -36px;
+      background: url('../../img/sprite.png')  no-repeat -5px -36px;
       width: 14px;
       height: 10px;
+      left: 64px;
     }
   }
 }
@@ -315,18 +318,15 @@
     background: url("../../img/sprite.png") no-repeat 0 -71px;
   }
 }
-.position__first--active{
-  background: url("../../img/sprite.png") no-repeat -40px -15px;
-}
 
-.active-first {
+.position__first--active{
   background: url("../../img/sprite.png") no-repeat -44px -15px;
   &:hover {
     background: url("../../img/sprite.png") no-repeat -44px -15px;;
   }
 }
 
-.active-second {
+.position__second--active{
   background: url("../../img/sprite.png") no-repeat -19px -34px!important;
   &:hover {
     background: none;
@@ -345,9 +345,7 @@
   }
 
 }
-.position__second--active{
-  background: url("../../img/sprite.png") no-repeat -15px -34px;  
-}
+
 .position__name {
   font-size: 24px;
 }
@@ -358,7 +356,7 @@
   position: relative;
   margin-left: 14px;
   &:after {
-    background: url("../../img/sprite.png") no-repeat -69px -2px;
+    background: url("../../img/sprite.png") no-repeat -73px -2px;
     width: 10px;
     height: 29px;
     position: absolute;
@@ -376,8 +374,8 @@
   position: relative;
 
   &:after {
-    background: url("../../img/sprite.png") no-repeat -25px 0;
-    width: 29px;
+    background: url("../../img/sprite.png") no-repeat -28px 0;
+    width: 31px;
     height: 10px;
     content: '';
     display: block;

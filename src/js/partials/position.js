@@ -56,8 +56,8 @@ var position = (function () {
             reprod();
             
             function reprod() {
-                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width());
-                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height());
+                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width()) + 1;
+                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height()) + 1;
                 var numWidthHeight = numWidth * numHeight;
                 var contWatermark;
                 $('.container_small-img').width(Math.ceil(numWidth * ($('.img_small').width() + 0)));
@@ -91,8 +91,87 @@ var position = (function () {
                 $('.container_small-img').css('width', width+'px');
                 $('.img_small').css('margin-left', left + 'px');
             });
+
+            //=================================================================
+            //изменения растояния между элементами с помощью кнопок вверх, вниз
             
+            $('.indent-bottom-top').on('click', function (e) {
+                e.preventDefault();
+                var bottom = +$('.input_x-second').val() + 1;
+                
+                if(bottom >= 100){
+                    bottom = 100;
+                }
+                
+                $('.input_x-second').val(bottom);
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+                $('.container_small-img').css('height', '0px');
+                var height = Math.ceil($('.img_big').height()  / $('.img_small').eq(0).height()) * (+$('.img_small').eq(0).height() + +bottom);
+                $('.container_small-img').css('height', height+'px');
+                $('.img_small').css('margin-bottom', bottom + 'px');
+                $('.line-horizontal').height(+bottom + 1);
+            });
+            $('.indent-bottom-bottom').on('click', function (e) {
+                e.preventDefault();
+                var bottom = +$('.input_x-second').val() - 1;
+                
+                if(bottom <= 0){
+                    bottom = 0;
+                }
+                
+                $('.input_x-second').val(bottom);
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+                $('.container_small-img').css('height', '0px');
+                var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
+                $('.container_small-img').css('height', height+'px');
+                $('.img_small').css('margin-bottom', bottom + 'px');
+                $('.line-horizontal').height(+bottom + 1);
+            });
+            $('.indent-left-top').on('click', function (e) {
+                e.preventDefault();
+                var left = +$('.input_y-second').val() + 1;
+                
+                if(left >= 100){
+                    left = 100;
+                }
+                
+                $('.input_y-second').val(left);
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+                $('.container_small-img').css('height', '0px');
+                var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
+                $('.container_small-img').css('height', width+'px');
+                $('.img_small').css('margin-left', left + 'px');
+                $('.line-vertical').width(+left + 1);
+            });
+            $('.indent-left-bottom').on('click', function (e) {
+                e.preventDefault();
+                var left = +$('.input_y-second').val() - 1;
+                
+                if(left <= 0){
+                    left = 0;
+                }
+                
+               $('.input_y-second').val(left);
+                for(var i = 1; i < watermark.length; i++){
+                    watermark[i].remove();
+                }
+                $('.container_small-img').css('height', '0px');
+                var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
+                $('.container_small-img').css('height', width+'px');
+                $('.img_small').css('margin-left', left + 'px');
+                $('.line-vertical').width(+left + 1);
+            });
+            
+            
+            //=================================================================
         };
+
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
@@ -116,6 +195,8 @@ var position = (function () {
             $('.input_x').val(0);
             $('.input_y').val(0);          
             
+            // переключения режимов
+            var index = 0;
             $('.position__first').on('click', function(e){
                 e.preventDefault();
         
@@ -123,7 +204,10 @@ var position = (function () {
                 $('.position__watermark-one').addClass('hide');
                 $(this).addClass('position__first--active');
                 $('.position__second').removeClass('position__second--active');
-                _watermarkPage1();
+                index++;                
+         
+                    _watermarkPage1();                
+
                 $('.container_small-img').position({
                     my: 'left top',
                     at: 'left top',  
@@ -150,6 +234,10 @@ var position = (function () {
                 });
                 $('.input_x').val(0);
                 $('.input_y').val(0);
+                $('.img_small').css('margin-left', '0px');
+                $('.line-vertical').width(1);
+                $('.img_small').css('margin-bottom', '0px');
+                $('.line-horizontal').height(1);
                 imgSettings.tilling = false;
             });
             
@@ -161,7 +249,6 @@ var position = (function () {
                 }
                 
                 var container = $('.container_small-img');
-                var img = $('.img_small');
                 
                 container.css({
                     'width': 'auto',
