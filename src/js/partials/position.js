@@ -182,7 +182,7 @@ var position = (function () {
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
-                    if($('.img_small').width() < $('.img_big').width()){
+                    if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                         imgSettings.containment = 'parent';
                     }
                     else{
@@ -305,23 +305,31 @@ var position = (function () {
                     if(axis == 'x'){
                         var maxValueX = $('.img_big').width() - $('.img_small').width();
                         if(value >= maxValueX){
-                            value = maxValueX;
-                            input.val(maxValueX);
+                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                value = maxValueX;
+                                input.val(maxValueX);
+                            }
                         }
                         else if(value < 0){
-                            value = 0;
-                            input.val(0);
+                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                value = 0;
+                                input.val(0);
+                            }
                         }
                     }
                     if(axis == 'y'){
                         var maxValueY = $('.img_big').height() - $('.img_small').height();
                         if(value >= maxValueY){
-                            value = maxValueY;
-                            input.val(maxValueY);
+                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                value = maxValueX;
+                                input.val(maxValueX);
+                            }
                         }
                         else if(value < 0){
-                            value = 0;
-                            input.val(0);
+                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                value = 0;
+                                input.val(0);
+                            }
                         }
                     }
                     img.css(position, value + 'px' );
@@ -345,7 +353,12 @@ var position = (function () {
                         if(axis == 'x'){
                             var maxValueX = $('.img_big').width() - $('.img_small').width();
                             if(value >= maxValueX){
-                                newValue = maxValueX;
+                                if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                    newValue = maxValueX;
+                                }
+                                else{
+                                    newValue = +value + 1;
+                                }
                             }
                             else{
                                 newValue = +value + 1;
@@ -355,7 +368,12 @@ var position = (function () {
                         else if(axis == 'y'){
                             var maxValueY = $('.img_big').height() - $('.img_small').height();
                             if(value >= maxValueY){
-                                newValue = maxValueY;
+                                if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                    newValue = maxValueY;
+                                }
+                                else{
+                                    newValue = +value + 1;
+                                }
                             }
                             else{
                                 newValue = +value + 1;
@@ -365,7 +383,12 @@ var position = (function () {
                     }
                     else if(math == '-'){
                         if(value <= 0){
-                            newValue = 0
+                             if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                 newValue = 0
+                             }
+                             else{
+                                 newValue = +value - 1;
+                             }
                         }
                         else{
                             newValue = +value - 1;
