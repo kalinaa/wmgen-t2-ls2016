@@ -73,125 +73,108 @@ var position = (function () {
             
             
             //инпуты в блоке замощенния
-            $('.input_x-second').on('keyup', function () {
-                var bottom = $('.input_x-second').val();
-                if (bottom == ''){
-                    bottom = 0;
-                }
-                else if(bottom <= 0){
-                    bottom = 0;
-                    $('.input_x-second').val(bottom);
-                }
-                else if(bottom >= 100){
-                    bottom = 100;
-                    $('.input_x-second').val(bottom);
-                }
-                
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                
-                $('.container_small-img').css('height', '0px');
-                var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
-                $('.container_small-img').css('height', height+'px');
-                $('.img_small').css('margin-bottom', bottom + 'px');
-                $('.line-horizontal').height(+bottom + 1);
-                
+            $('.input_x-second').on('keyup', function () {            
+                inputEnter($('.input_x-second'), 'height', 'margin-bottom', 'height');                
             });
             $('.input_y-second').on('keyup', function () {
-                var left = $('.input_y-second').val();
-                if (left == '' || left <= 0){
-                    left = 0;
-                    $('.input_y-second').val(left);
+                inputEnter($('.input_y-second'), 'width', 'margin-left', 'width');
+            });              
+                    
+            function inputEnter(input, val1, val2, widthHeight) {
+                var value = input.val();
+                if (value == ''){
+                    value = 0;
+                    input.val(value);
                 }
-                else if(left >= 100){
-                    left = 100;
-                    $('.input_y-second').val(left);
+                else if(value <= 0){
+                    value = 0;
+                    input.val(value);
+                }
+                else if(value >= 100){
+                    value = 100;
+                    input.val(value);
+                }
+                $('.container_small-img').css(val1, '0px');
+                
+                if(widthHeight == 'width'){
+                    var imgSize = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +value);
+                    $('.line-vertical').width(+value + 1);
+                }
+                else if(widthHeight == 'height'){
+                    var imgSize = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +value);
+                    $('.line-horizontal').height(+value + 1);
                 }
                 
-                $('.container_small-img').css('width', '0px');
-                var width = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +left);
-                $('.container_small-img').css('width', width+'px');
-                $('.img_small').css('margin-left', left + 'px');
-                $('.line-vertical').width(+left + 1);
-            });
-
+                $('.container_small-img').css(val1, imgSize+'px');
+                $('.img_small').css(val2, value + 'px');
+            }
+            
             //=================================================================
             //изменения растояния между элементами с помощью кнопок вверх, вниз
             index = index + 1;
             if(index == 1){
                 $('.indent-bottom-top').on('click', function (e) {
                     e.preventDefault();
-                    var bottom = +$('.input_x-second').val() + 1;
-                
-                    if(bottom >= 100){
-                        bottom = 100;
-                    }
-                
-                    $('.input_x-second').val(bottom);
-                    for(var i = 1; i < watermark.length; i++){
-                     watermark[i].remove();
-                    }
-                    $('.container_small-img').css('height', '0px');
-                    var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').eq(0).height() + +bottom);
-                    $('.container_small-img').css('height', height+'px');
-                    $('.img_small').css('margin-bottom', bottom + 'px');
-                    $('.line-horizontal').height(+bottom + 1);
+                    tilingInput($('.input_x-second'), "+",  'height', 'height', 'margin-bottom');
                 });
                 $('.indent-bottom-bottom').on('click', function (e) {
                     e.preventDefault();
-                    var bottom = +$('.input_x-second').val() - 1;
-                
-                    if(bottom <= 0){
-                        bottom = 0;
-                    }
-                
-                    $('.input_x-second').val(bottom);
-                    for(var i = 1; i < watermark.length; i++){
-                        watermark[i].remove();
-                    }
-                    $('.container_small-img').css('height', '0px');
-                    var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
-                    $('.container_small-img').css('height', height+'px');
-                    $('.img_small').css('margin-bottom', bottom + 'px');
-                    $('.line-horizontal').height(+bottom + 1);
+                    tilingInput($('.input_x-second'), "-",  'height', 'height', 'margin-bottom');
                 });
                 $('.indent-left-top').on('click', function (e) {
                     e.preventDefault();
-                    var left = +$('.input_y-second').val() + 1;
-                
-                    if(left >= 100){
-                     left = 100;
-                    }
-                
-                    $('.input_y-second').val(left);
-                    for(var i = 1; i < watermark.length; i++){
-                        watermark[i].remove();
-                    }
-                    $('.container_small-img').css('width', '0px');
-                    var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
-                    $('.container_small-img').css('width', width+'px');
-                    $('.img_small').css('margin-left', left + 'px');
-                    $('.line-vertical').width(+left + 1);
+                    tilingInput($('.input_y-second'), "+",  'width', 'width', 'margin-left');
                 });
                 $('.indent-left-bottom').on('click', function (e) {
                     e.preventDefault();
-                    var left = +$('.input_y-second').val() - 1;
-                
-                    if(left <= 0){
-                        left = 0;
+                    tilingInput($('.input_y-second'), "-",  'width', 'width', 'margin-left');
+                });
+
+                function tilingInput(input, sign, widthHeight, val1, val2) {
+                    
+                    if(sign == '+'){
+                        var value = + input.val() + 1;  
+                    }
+                    if(sign == '-'){
+                        var value = + input.val() - 1;
+                    }
+                    
+                    if(value <= 0){
+                        value = 0;
+                    }
+                    if(value >= 100){
+                        value = 100;
                     }
                 
-                $('.input_y-second').val(left);
+                    input.val(value);
                     for(var i = 1; i < watermark.length; i++){
                         watermark[i].remove();
                     }
-                    $('.container_small-img').css('width', '0px');
-                    var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
-                    $('.container_small-img').css('width', width+'px');
-                    $('.img_small').css('margin-left', left + 'px');
-                    $('.line-vertical').width(+left + 1);
-                });
+                    $('.container_small-img').css(val1, '0px');
+                
+                    if(widthHeight == 'width'){
+                        var imgSize = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +value);
+                        if(sign == '+'){
+                            $('.line-vertical').width(+value + 1);
+                        }
+                        else if(sign == '-'){
+                            $('.line-vertical').width(+value - 1);
+                        }
+                    }
+                    else if(widthHeight == 'height'){
+                        var imgSize = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +value);
+                        if(sign == '+'){
+                            $('.line-horizontal').height(+value + 1);
+                        }
+                        else if(sign == '-'){
+                            $('.line-horizontal').height(+value - 1);
+                        }
+                    }
+                
+                    $('.container_small-img').css(val1, imgSize+'px');
+                    $('.img_small').css(val2, value + 'px');
+
+                }
             }
             //=================================================================
         };
