@@ -39,6 +39,7 @@ var position = (function () {
         };
         
         //страница замощенния
+        var index = 0;
         var _watermarkPage1 = function () {
             
             if($('.position__second--active').length){
@@ -56,8 +57,8 @@ var position = (function () {
             reprod();
             
             function reprod() {
-                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width()) + 1;
-                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height()) + 1;
+                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width());
+                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height());
                 var numWidthHeight = numWidth * numHeight;
                 var contWatermark;
                 $('.container_small-img').width(Math.ceil(numWidth * ($('.img_small').width() + 0)));
@@ -74,113 +75,139 @@ var position = (function () {
             //инпуты в блоке замощенния
             $('.input_x-second').on('keyup', function () {
                 var bottom = $('.input_x-second').val();
+                if (bottom == ''){
+                    bottom = 0;
+                }
+                else if(bottom <= 0){
+                    bottom = 0;
+                    $('.input_x-second').val(bottom);
+                }
+                else if(bottom >= 100){
+                    bottom = 100;
+                    $('.input_x-second').val(bottom);
+                }
                 
                 for(var i = 1; i < watermark.length; i++){
                     watermark[i].remove();
                 }
+                
                 $('.container_small-img').css('height', '0px');
                 var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
                 $('.container_small-img').css('height', height+'px');
                 $('.img_small').css('margin-bottom', bottom + 'px');
+                $('.line-horizontal').height(+bottom + 1);
+                
             });
             $('.input_y-second').on('keyup', function () {
                 var left = $('.input_y-second').val();
+                if (left == '' || left <= 0){
+                    left = 0;
+                    $('.input_y-second').val(left);
+                }
+                else if(left >= 100){
+                    left = 100;
+                    $('.input_y-second').val(left);
+                }
                 
                 $('.container_small-img').css('width', '0px');
                 var width = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +left);
                 $('.container_small-img').css('width', width+'px');
                 $('.img_small').css('margin-left', left + 'px');
+                $('.line-vertical').width(+left + 1);
             });
 
             //=================================================================
             //изменения растояния между элементами с помощью кнопок вверх, вниз
-            
-            $('.indent-bottom-top').on('click', function (e) {
-                e.preventDefault();
-                var bottom = +$('.input_x-second').val() + 1;
+            index = index + 1;
+            if(index == 1){
+                $('.indent-bottom-top').on('click', function (e) {
+                    e.preventDefault();
+                    var bottom = +$('.input_x-second').val() + 1;
                 
-                if(bottom >= 100){
-                    bottom = 100;
-                }
+                    if(bottom >= 100){
+                        bottom = 100;
+                    }
                 
-                $('.input_x-second').val(bottom);
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                $('.container_small-img').css('height', '0px');
-                var height = Math.ceil($('.img_big').height()  / $('.img_small').eq(0).height()) * (+$('.img_small').eq(0).height() + +bottom);
-                $('.container_small-img').css('height', height+'px');
-                $('.img_small').css('margin-bottom', bottom + 'px');
-                $('.line-horizontal').height(+bottom + 1);
-            });
-            $('.indent-bottom-bottom').on('click', function (e) {
-                e.preventDefault();
-                var bottom = +$('.input_x-second').val() - 1;
+                    $('.input_x-second').val(bottom);
+                    for(var i = 1; i < watermark.length; i++){
+                     watermark[i].remove();
+                    }
+                    $('.container_small-img').css('height', '0px');
+                    var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').eq(0).height() + +bottom);
+                    $('.container_small-img').css('height', height+'px');
+                    $('.img_small').css('margin-bottom', bottom + 'px');
+                    $('.line-horizontal').height(+bottom + 1);
+                });
+                $('.indent-bottom-bottom').on('click', function (e) {
+                    e.preventDefault();
+                    var bottom = +$('.input_x-second').val() - 1;
                 
-                if(bottom <= 0){
-                    bottom = 0;
-                }
+                    if(bottom <= 0){
+                        bottom = 0;
+                    }
                 
-                $('.input_x-second').val(bottom);
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                $('.container_small-img').css('height', '0px');
-                var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
-                $('.container_small-img').css('height', height+'px');
-                $('.img_small').css('margin-bottom', bottom + 'px');
-                $('.line-horizontal').height(+bottom + 1);
-            });
-            $('.indent-left-top').on('click', function (e) {
-                e.preventDefault();
-                var left = +$('.input_y-second').val() + 1;
+                    $('.input_x-second').val(bottom);
+                    for(var i = 1; i < watermark.length; i++){
+                        watermark[i].remove();
+                    }
+                    $('.container_small-img').css('height', '0px');
+                    var height = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +bottom);
+                    $('.container_small-img').css('height', height+'px');
+                    $('.img_small').css('margin-bottom', bottom + 'px');
+                    $('.line-horizontal').height(+bottom + 1);
+                });
+                $('.indent-left-top').on('click', function (e) {
+                    e.preventDefault();
+                    var left = +$('.input_y-second').val() + 1;
                 
-                if(left >= 100){
-                    left = 100;
-                }
+                    if(left >= 100){
+                     left = 100;
+                    }
+                
+                    $('.input_y-second').val(left);
+                    for(var i = 1; i < watermark.length; i++){
+                        watermark[i].remove();
+                    }
+                    $('.container_small-img').css('width', '0px');
+                    var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
+                    $('.container_small-img').css('width', width+'px');
+                    $('.img_small').css('margin-left', left + 'px');
+                    $('.line-vertical').width(+left + 1);
+                });
+                $('.indent-left-bottom').on('click', function (e) {
+                    e.preventDefault();
+                    var left = +$('.input_y-second').val() - 1;
+                
+                    if(left <= 0){
+                        left = 0;
+                    }
                 
                 $('.input_y-second').val(left);
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                $('.container_small-img').css('height', '0px');
-                var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
-                $('.container_small-img').css('height', width+'px');
-                $('.img_small').css('margin-left', left + 'px');
-                $('.line-vertical').width(+left + 1);
-            });
-            $('.indent-left-bottom').on('click', function (e) {
-                e.preventDefault();
-                var left = +$('.input_y-second').val() - 1;
-                
-                if(left <= 0){
-                    left = 0;
-                }
-                
-               $('.input_y-second').val(left);
-                for(var i = 1; i < watermark.length; i++){
-                    watermark[i].remove();
-                }
-                $('.container_small-img').css('height', '0px');
-                var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
-                $('.container_small-img').css('height', width+'px');
-                $('.img_small').css('margin-left', left + 'px');
-                $('.line-vertical').width(+left + 1);
-            });
-            
-            
+                    for(var i = 1; i < watermark.length; i++){
+                        watermark[i].remove();
+                    }
+                    $('.container_small-img').css('width', '0px');
+                    var width = Math.ceil($('.img_big').width()  / $('.img_small').width()) * (+$('.img_small').width() + +left);
+                    $('.container_small-img').css('width', width+'px');
+                    $('.img_small').css('margin-left', left + 'px');
+                    $('.line-vertical').width(+left + 1);
+                });
+            }
             //=================================================================
         };
 
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
-                if(imgSettings.containment == false){
-                    imgSettings.containment = 'parent';
-                }
-              $('.container_small-img').on('mousemove', _changePositionDrag);
+                    if($('.img_small').width() < $('.img_big').width()){
+                        imgSettings.containment = 'parent';
+                    }
+                    else{
+                        imgSettings.containment = false;
+                    }
+            $('.container_small-img').on('mousemove', _changePositionDrag);
             }
-            else if($('.position__first--active').length){
+        else if($('.position__first--active').length){
               imgSettings.containment = false;
               $('.container_small-img').on('mousemove', _changePositionDrag); 
             }
