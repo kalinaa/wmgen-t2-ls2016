@@ -1,3 +1,3 @@
 <?php
-    header('Content-Disposition: attachment; filename="fileNameFromGetImg.php"');
-    readfile("fileNameFromGetImg.php");
+    header('Content-Disposition: attachment; filename="result.png"');
+    readfile("server/files/result.png");
