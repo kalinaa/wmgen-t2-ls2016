@@ -250,7 +250,7 @@ var position = (function () {
                     collision: 'none none',
                     of: '.img_big' 
                 });
-                imgSettings.tilling = true;                
+                imgSettings.tiling = true;
             });
 
             $('.position__second').on('click', function(e){
@@ -274,7 +274,7 @@ var position = (function () {
                 $('.line-vertical').width(1);
                 $('.img_small').css('margin-bottom', '0px');
                 $('.line-horizontal').height(1);
-                imgSettings.tilling = false;
+                imgSettings.tiling = false;
             });
             
             function remove(){

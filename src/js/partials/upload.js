@@ -15,7 +15,6 @@
         widthWM,
         heightWM,
         maxWidthWM;
-        //maxHeightWM;
 
     mainImg.fileupload({
         thumbnail:false,
@@ -43,7 +42,7 @@
                 $('#watermark-input').prop('disabled', true);
             });
             $('#main-img').attr('src', data.result.files[0].url).show();   // передача адреса картинки в канву
-            imgSettings.tilling = false;
+            imgSettings.tiling = false;
             $("<img alt='Водяной знак' src='' id='watermark' class='img_small'>").replaceAll('.img_small').hide();
             $('.position__second').trigger('click');
             if ($('#watermark-input').prop('disabled')){
