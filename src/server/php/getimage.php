@@ -32,7 +32,11 @@ if (isset($_POST['generalScale'])) {
 }
 
 if (isset($_POST['tiling'])) {
-	$tiling = $_POST['tiling'];
+	if ($_POST['tiling'] == 'true') {
+		$tiling = true;
+	} else {
+		$tiling = false;
+	}	
 }
 
 if (isset($_POST['opacity'])) {
@@ -228,13 +232,13 @@ get_image_scale($wm_image, $preview_wm_path, $preview_wm_file, $preview_scale);
 // 	unlink('files/result.png');
 // }
 
- // if (!($tiling)) {
+if ($tiling == false) {
  	$preview_scs = create_watermark_solid($preview_main_image,$preview_wm_image,$position_x,$position_y,$opacity,'preview.png');
  	$result_scs = create_watermark_solid($main_image,$wm_image,$result_position_x,$result_position_y,$opacity,'result.png');
-  // } else {
-//	$preview_scs = create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
-// 	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
-// }
+} else {
+	$preview_scs = create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
+	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
+}
 
 $param = array('resultscs' => $result_scs, 'previewscs' => $preview_scs, 'tiling' => $tiling);
 exit(json_encode($param));
