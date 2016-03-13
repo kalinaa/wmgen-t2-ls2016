@@ -8,7 +8,7 @@
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
             success     : function(answer){
                 var param = $.parseJSON(answer);
-                if (param.flag){
+                if (param.resultscs){
                     $('body').append('<iframe src="server/php/download.php" class="frame"></iframe>');
                 } else {
                     $('#server-error').show().children('.server__error-main').slideDown();

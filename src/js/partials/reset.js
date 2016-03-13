@@ -3,7 +3,7 @@
 	$('.button-reset').on('click', function(){
 		$('.settings__form').find('input').val('');
 		$('.file-name').text('');
-		imgSettings.tilling = false;
+		imgSettings.tiling = false;
 		$('.position__second').trigger('click');
 		$('#main-img, #watermark').removeAttr("alt").removeAttr("src");
 		$('.ui-slider-handle').css('left','100%');
