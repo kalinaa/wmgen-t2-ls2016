@@ -7,6 +7,7 @@
             type        : 'post',
             url         : '../server/php/getimage.php',
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
+            timeout     : 30000,
             beforeSend  : function(){
                 downloadPopup.show();
             },
