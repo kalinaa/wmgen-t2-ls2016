@@ -27,13 +27,12 @@ var position = (function () {
                     
                     if($('.position__second--active').length){
                         $('.watermark-first').removeClass('watermark-link--active');
-                    //Запись координатов с Draggable в input
-
-                        var left = Math.round(ui.position.left).toFixed(0);
-                        var top = Math.round(ui.position.top).toFixed(0);
-                        $('.input_x').val(left);
-                        $('.input_y').val(top);
                        }
+                    //Запись координатов с Draggable в input
+                    var left = Math.round(ui.position.left).toFixed(0);
+                    var top = Math.round(ui.position.top).toFixed(0);
+                    $('.input_x').val(left);
+                    $('.input_y').val(top);
                     }
                 });
         };
