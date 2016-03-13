@@ -1,4 +1,5 @@
 ;(function(){
+    var downloadPopup = $('.download-popup');
     // по клику на disable показывать тултипы
     $('#settings-form').on('submit',  function(e){
         e.preventDefault();
@@ -6,12 +7,17 @@
             type        : 'post',
             url         : '../server/php/getimage.php',
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
+            beforeSend  : function(){
+                downloadPopup.show();
+            },
             success     : function(answer){
                 var param = $.parseJSON(answer);
                 console.log (param);
                 if (param.resultscs){
+                    downloadPopup.hide();
                     $('body').append('<iframe src="server/php/download.php" class="frame"></iframe>');
                 } else {
+                    downloadPopup.hide();
                     $('#server-error').show().children('.server__error-main').slideDown();
                 }
             },
