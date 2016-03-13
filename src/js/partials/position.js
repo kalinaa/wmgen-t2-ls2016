@@ -182,13 +182,13 @@ var position = (function () {
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
-                    if(($('.img_small').width() >= $('.img_big').width()) || ($('.img_small').height() >= $('.img_big').height())){
-                        imgSettings.containment = false;
-                    }
-                    else{
-                        imgSettings.containment = 'parent';
-                    }
-            $('.container_small-img').on('mousemove', _changePositionDrag);
+                if(($('.img_small').width() >= $('.img_big').width()) || ($('.img_small').height() >= $('.img_big').height())){
+                    imgSettings.containment = false;
+                }
+                else{
+                    imgSettings.containment = 'parent';
+                }
+                $('.container_small-img').on('mousemove', _changePositionDrag);
             }
         else if($('.position__first--active').length){
               imgSettings.containment = false;
