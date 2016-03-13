@@ -87,7 +87,7 @@ function clear_folder($path) {
 }
 
 function get_image_file($path) {
-	foreach (glob($path.'*.{jp*g,png,gif}',GLOB_BRACE) as $file) {
+	foreach (glob($path.'*.{JP*G,PNG,GIF,jp*g,png,gif}',GLOB_BRACE) as $file) {
 		if ($file_type = getimagesize($file)) {
 			$file_list[filemtime($file)] = $file;
 		}	
