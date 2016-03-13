@@ -48,6 +48,12 @@ var position = (function () {
             
             $('.input_x-second').val(0);
             $('.input_y-second').val(0);
+            $('.line-vertical').width(1);
+            $('.line-horizontal').height(1);
+            $('.img_small').css({
+                'margin-left': '0px',
+                'margin-bottom': '0px'
+            });
             
             var watermark = $('.img_small');
                 
@@ -57,12 +63,12 @@ var position = (function () {
             reprod();
             
             function reprod() {
-                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width());
-                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height());
+                var numWidth = Math.ceil($('.img_big').width() / $('.img_small').width()) + 1;
+                var numHeight = Math.ceil($('.img_big').height()  / $('.img_small').height()) + 1;
                 var numWidthHeight = numWidth * numHeight;
                 var contWatermark;
-                $('.container_small-img').width(Math.ceil(numWidth * ($('.img_small').width() + 0)));
-                $('.container_small-img').height(Math.ceil(numHeight * ($('.img_small').height() + 0)));            
+                $('.container_small-img').width(Math.ceil(numWidth * ($('.img_small').width())));
+                $('.container_small-img').height(Math.ceil(numHeight * ($('.img_small').height())));            
 
                 for (var i = 1; i < numWidthHeight; i++) {
                     contWatermark = $('.img_small').eq(0).clone();
@@ -97,11 +103,11 @@ var position = (function () {
                 $('.container_small-img').css(val1, '0px');
                 
                 if(widthHeight == 'width'){
-                    var imgSize = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +value);
+                    var imgSize = Math.ceil(($('.img_big').width() / $('.img_small').width()) + 1) * (+$('.img_small').width() + +value);
                     $('.line-vertical').width(+value + 1);
                 }
                 else if(widthHeight == 'height'){
-                    var imgSize = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +value);
+                    var imgSize = Math.ceil(($('.img_big').height()  / $('.img_small').height()) + 1) * (+$('.img_small').height() + +value);
                     $('.line-horizontal').height(+value + 1);
                 }
                 
@@ -153,21 +159,41 @@ var position = (function () {
                     $('.container_small-img').css(val1, '0px');
                 
                     if(widthHeight == 'width'){
-                        var imgSize = Math.ceil($('.img_big').width() / $('.img_small').width()) * (+$('.img_small').width() + +value);
+                        var imgSize = Math.ceil(($('.img_big').width() / $('.img_small').width()) + 1) * (+$('.img_small').width() + +value);
                         if(sign == '+'){
-                            $('.line-vertical').width(+value + 1);
+                            if(value >= 100){
+                                $('.line-vertical').width(100);
+                            }
+                            else{
+                                $('.line-vertical').width(+value + 1);
+                            }
                         }
                         else if(sign == '-'){
-                            $('.line-vertical').width(+value - 1);
+                            if(value <= 1){
+                                $('.line-vertical').width(1);
+                            }
+                            else{
+                                $('.line-vertical').width(+value - 1);
+                            }
                         }
                     }
                     else if(widthHeight == 'height'){
-                        var imgSize = Math.ceil($('.img_big').height()  / $('.img_small').height()) * (+$('.img_small').height() + +value);
+                        var imgSize = Math.ceil(($('.img_big').height()  / $('.img_small').height()) + 1) * (+$('.img_small').height() + +value);
                         if(sign == '+'){
-                            $('.line-horizontal').height(+value + 1);
+                            if(value >= 100){
+                                $('.line-horizontal').height(100);
+                            }
+                            else{
+                                $('.line-horizontal').height(+value + 1);
+                            }                           
                         }
                         else if(sign == '-'){
-                            $('.line-horizontal').height(+value - 1);
+                            if(value <= 1){
+                                $('.line-horizontal').height(1);
+                            }
+                            else{
+                                $('.line-horizontal').height(+value - 1);
+                            }                           
                         }
                     }
                 
@@ -182,7 +208,7 @@ var position = (function () {
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
-                if(($('.img_small').width() >= $('.img_big').width()) || ($('.img_small').height() >= $('.img_big').height())){
+                if(($('.img_small').width() > $('.img_big').width()) || ($('.img_small').height() > $('.img_big').height())){
                     imgSettings.containment = false;
                 }
                 else{
@@ -305,13 +331,13 @@ var position = (function () {
                     if(axis == 'x'){
                         var maxValueX = $('.img_big').width() - $('.img_small').width();
                         if(value >= maxValueX){
-                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                 value = maxValueX;
                                 input.val(maxValueX);
                             }
                         }
                         else if(value < 0){
-                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                 value = 0;
                                 input.val(0);
                             }
@@ -320,13 +346,13 @@ var position = (function () {
                     if(axis == 'y'){
                         var maxValueY = $('.img_big').height() - $('.img_small').height();
                         if(value >= maxValueY){
-                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                 value = maxValueX;
                                 input.val(maxValueX);
                             }
                         }
                         else if(value < 0){
-                            if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                 value = 0;
                                 input.val(0);
                             }
@@ -353,7 +379,7 @@ var position = (function () {
                         if(axis == 'x'){
                             var maxValueX = $('.img_big').width() - $('.img_small').width();
                             if(value >= maxValueX){
-                                if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                     newValue = maxValueX;
                                 }
                                 else{
@@ -368,7 +394,7 @@ var position = (function () {
                         else if(axis == 'y'){
                             var maxValueY = $('.img_big').height() - $('.img_small').height();
                             if(value >= maxValueY){
-                                if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                     newValue = maxValueY;
                                 }
                                 else{
@@ -383,7 +409,7 @@ var position = (function () {
                     }
                     else if(math == '-'){
                         if(value <= 0){
-                             if(($('.img_small').width() < $('.img_big').width()) || ($('.img_small').height() < $('.img_big').height())){
+                             if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
                                  newValue = 0
                              }
                              else{

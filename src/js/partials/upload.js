@@ -20,6 +20,7 @@
         thumbnail:false,
         add: function(e, data) {
             var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
+            imgSettings.containment = 'parent';
             if(!acceptFileTypes.test(data.originalFiles[0].type)) {
                 $('#file-ext-error').show().children('.server__error-main').slideDown();
             }
@@ -124,6 +125,7 @@
                     var param = $.parseJSON(answer);
                     noScaleWidthWM = param.width;
                     getMaxWidthWM();
+                    $('#wm-wrap').css({'top':'0px', 'left':'0px'});
                     $('#watermark').attr({'src' : data.result.files[0].url,  style : 'max-width:' + maxWidthWM + 'px'}).show();
                 }
             );
