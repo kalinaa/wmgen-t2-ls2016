@@ -1,5 +1,5 @@
 ;(function(){
-    // поклику на disable показывать тултипы
+    // по клику на disable показывать тултипы
     $('#settings-form').on('submit',  function(e){
         e.preventDefault();
         $.ajax({
@@ -8,6 +8,7 @@
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
             success     : function(answer){
                 var param = $.parseJSON(answer);
+                console.log (param);
                 if (param.resultscs){
                     $('body').append('<iframe src="server/php/download.php" class="frame"></iframe>');
                 } else {

@@ -24,7 +24,7 @@ if (isset($_POST['padding-left'])) {
 }
 
 if (isset($_POST['padding-top'])) {
-	$padding_left = $_POST['padding-top'];
+	$padding_top = $_POST['padding-top'];
 }
 
 if (isset($_POST['generalScale'])) {
@@ -229,7 +229,7 @@ if (!$tiling) {
 	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
 }
 
-echo $result_scs.', '.$preview_scs;
+//echo $result_scs.', '.$preview_scs;
 
 $param = array('resultscs' => $result_scs, 'previewscs' => $preview_scs);
 exit(json_encode($param));
