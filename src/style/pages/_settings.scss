@@ -251,21 +251,12 @@
     left: 64px;
   }
 
-  &:hover {
+  &:hover,  &:active {
     &:after {
       background: url("../../img/sprite.png") no-repeat -40px -79px;
       width: 16px;
       height: 10px;
       left: 62px;
-    }
-  }
-
-  &:active {
-    &:after {
-      background: url('../../img/sprite.png')  no-repeat -4px -48px;
-      width: 15px;
-      height: 10px;
-      left: 63px;
     }
   }
 }
@@ -283,20 +274,11 @@
     top: -12px;
   }
 
-  &:hover {
+  &:hover, &:active {
     &:after {
-      background: url("../../img/sprite.png") no-repeat -22px -78px;
+      background: url("../../img/sprite.png") no-repeat -22px -79px;
       width: 16px;
       height: 10px;
-    }
-  }
-
-  &:active {
-    &:after {
-      background: url('../../img/sprite.png')  no-repeat -5px -36px;
-      width: 14px;
-      height: 10px;
-      left: 64px;
     }
   }
 }
