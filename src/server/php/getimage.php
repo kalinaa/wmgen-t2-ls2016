@@ -8,7 +8,7 @@ $position_y = 0;
 $padding_left = 0;
 $padding_top = 0;
 $general_scale = 1;
-$tiling = true;
+$tiling = false;
 $opacity = 1;
 
 if (isset($_POST['positionX'])) {
@@ -39,10 +39,10 @@ if (isset($_POST['opacity'])) {
 	$opacity = round($_POST['opacity'],2);
 }
 
-$result_position_x = round($position_x*$general_scale,0);
-$result_position_y = round($position_y*$general_scale,0);
-$result_padding_left = round($padding_left*$general_scale,0);
-$result_padding_top = round($padding_top*$general_scale,0);
+$result_position_x = round($position_x/$general_scale,0);
+$result_position_y = round($position_y/$general_scale,0);
+$result_padding_left = round($padding_left/$general_scale,0);
+$result_padding_top = round($padding_top/$general_scale,0);
 
 
 $preview_width_canvas = 650;
@@ -160,13 +160,24 @@ function get_image_scale($file_image, $dest_image_path, $dest_image_name, $scale
 
 
 function create_watermark_solid($main_image_path, $watermark_image_path, $offset_x, $offset_y, $watermark_opacity, $dest_file_name) {
+	$success = false;
+
 	$main_image = new abeautifulsite\SimpleImage($main_image_path);
 	$main_image -> overlay($watermark_image_path,'top left', $watermark_opacity, $offset_x, $offset_y);
+
 	$main_image -> save('files/'.$dest_file_name);
+
+	if (file_exists('files/'.$dest_file_name)) {
+		$success = true;
+	}
+
+	return $success;
 }
 
 
 function create_watermark_tiling($main_image_path, $watermark_image_path, $space_x, $space_y, $offset_x, $offset_y, $watermark_opacity,$dest_file_name){
+	$success = false;
+
 	$image_x = $offset_x;
 	$image_Y = $offset_y;
 
@@ -192,7 +203,11 @@ function create_watermark_tiling($main_image_path, $watermark_image_path, $space
 		$image_x += $step_x; 
 	}
 
-	$main_image -> save('files/'.$dest_file_name);
+	if (file_exists('files/'.$dest_file_name)) {
+		$success = true;
+	}
+
+	return $success;
 }
 
 // output
@@ -207,11 +222,15 @@ unlink('files/preview.png');
 unlink('files/result.png');
 
 if (!$tiling) {
-	create_watermark_solid($preview_main_image,$preview_wm_image,$position_x,$position_y,$opacity,'preview.png');
-	create_watermark_solid($main_image,$wm_image,$result_position_x,$result_position_y,$opacity,'result.png');
+	$preview_scs = create_watermark_solid($preview_main_image,$preview_wm_image,$position_x,$position_y,$opacity,'preview.png');
+	$result_scs = create_watermark_solid($main_image,$wm_image,$result_position_x,$result_position_y,$opacity,'result.png');
 } else {
-	create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
-	create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
+	$preview_scs = create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
+	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
 }
 
+echo $result_scs.', '.$preview_scs;
+
+$param = array('resultscs' => $result_scs, 'previewscs' => $preview_scs);
+exit(json_encode($param));
 ?>
