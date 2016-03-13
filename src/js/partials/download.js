@@ -23,6 +23,7 @@
                 }
             },
             error       : function(){
+                downloadPopup.hide();
                 $('#server-error').show().children('.server__error-main').slideDown();
             }
         })
