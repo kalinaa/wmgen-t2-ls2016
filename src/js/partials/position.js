@@ -208,13 +208,13 @@ var position = (function () {
         //Запуск draggeble
         $('.container_small-img').on('mousemove', function(){
             if($('.position__second--active').length){
-                    if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
-                        imgSettings.containment = 'parent';
-                    }
-                    else{
-                        imgSettings.containment = false;
-                    }
-            $('.container_small-img').on('mousemove', _changePositionDrag);
+                if(($('.img_small').width() > $('.img_big').width()) || ($('.img_small').height() > $('.img_big').height())){
+                    imgSettings.containment = false;
+                }
+                else{
+                    imgSettings.containment = 'parent';
+                }
+                $('.container_small-img').on('mousemove', _changePositionDrag);
             }
         else if($('.position__first--active').length){
               imgSettings.containment = false;
@@ -251,7 +251,7 @@ var position = (function () {
                     collision: 'none none',
                     of: '.img_big' 
                 });
-                imgSettings.tilling = true;                
+                imgSettings.tiling = true;
             });
 
             $('.position__second').on('click', function(e){
@@ -275,7 +275,7 @@ var position = (function () {
                 $('.line-vertical').width(1);
                 $('.img_small').css('margin-bottom', '0px');
                 $('.line-horizontal').height(1);
-                imgSettings.tilling = false;
+                imgSettings.tiling = false;
             });
             
             function remove(){

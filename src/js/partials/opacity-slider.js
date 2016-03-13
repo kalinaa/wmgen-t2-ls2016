@@ -8,10 +8,9 @@
             slide: function(event, value){
                 watermarkOpacity = value.value/100;
                 watermark.fadeTo(0, watermarkOpacity);
+                imgSettings.opacity = watermarkOpacity;
+                console.log(imgSettings.opacity);
                 progress.width(value.value + '%');
-            },
-            change: function() {
-                return watermarkOpacity
             }
         });
 }());

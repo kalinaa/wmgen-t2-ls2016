@@ -1,5 +1,6 @@
 ;var imgSettings = {
     generalScale    : 1,
-    tilling         : false,
+    tiling         : false,
+    opacity         : 1,
     containment: 'parent'   // параметр для draggable
 };
