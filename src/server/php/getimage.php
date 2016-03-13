@@ -203,6 +203,8 @@ function create_watermark_tiling($main_image_path, $watermark_image_path, $space
 		$image_x += $step_x; 
 	}
 
+	$main_image -> save('files/'.$dest_file_name);
+
 	if (file_exists('files/'.$dest_file_name)) {
 		$success = true;
 	}
@@ -218,19 +220,22 @@ $wm_image = get_image_file($watermark_image_path);
 $preview_scale = get_image_preview($main_image, $preview_width_canvas, $preview_height_canvas, $preview_main_path, $preview_main_file);
 get_image_scale($wm_image, $preview_wm_path, $preview_wm_file, $preview_scale);
 
-unlink('files/preview.png');
-unlink('files/result.png');
+// if (file_exists('files/preview.png')) {
+// 	unlink('files/preview.png');
+// }
 
-if (!$tiling) {
-	$preview_scs = create_watermark_solid($preview_main_image,$preview_wm_image,$position_x,$position_y,$opacity,'preview.png');
-	$result_scs = create_watermark_solid($main_image,$wm_image,$result_position_x,$result_position_y,$opacity,'result.png');
-} else {
-	$preview_scs = create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
-	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
-}
+// if (file_exists('files/result.png')) {
+// 	unlink('files/result.png');
+// }
 
-//echo $result_scs.', '.$preview_scs;
+ // if (!($tiling)) {
+ 	$preview_scs = create_watermark_solid($preview_main_image,$preview_wm_image,$position_x,$position_y,$opacity,'preview.png');
+ 	$result_scs = create_watermark_solid($main_image,$wm_image,$result_position_x,$result_position_y,$opacity,'result.png');
+  // } else {
+//	$preview_scs = create_watermark_tiling($preview_main_image,$preview_wm_image,$padding_left,$padding_top,$position_x,$position_y,$opacity,'preview.png');
+// 	$result_scs = create_watermark_tiling($main_image,$wm_image,$result_padding_left,$result_padding_top,$result_position_x,$result_position_y,$opacity,'result.png');
+// }
 
-$param = array('resultscs' => $result_scs, 'previewscs' => $preview_scs);
+$param = array('resultscs' => $result_scs, 'previewscs' => $preview_scs, 'tiling' => $tiling);
 exit(json_encode($param));
 ?>
