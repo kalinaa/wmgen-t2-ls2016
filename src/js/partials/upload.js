@@ -15,6 +15,7 @@
         widthWM,
         heightWM,
         maxWidthWM;
+        //maxHeightWM;
 
     mainImg.fileupload({
         thumbnail:false,
@@ -34,7 +35,6 @@
         dataType: 'json',
         done: function (e, data) {
             $('#main-img-input').siblings('.file-name').text(data.result.files[0].name);   // подстановка имени файла в инпуты
-            console.log(data.result.files[0].name);
             $('#main-img-input').parent().siblings('.download__tooltip').hide();
             $('#watermark-input').siblings('.file-name').val('');
             $('#watermark-input').siblings('.file-name').text('');
@@ -87,9 +87,10 @@
         noScaleHeightMainImg = param.height;
         var widthScale = workAreaWidth/noScaleWidthMainImg,
             heightScale = workAreaHeight/noScaleHeightMainImg;
-        if (widthScale < 1 || heightScale < 1 && widthScale <= heightScale){
+
+        if (widthScale <= heightScale && (widthScale < 1 || heightScale < 1)){
             imgSettings.generalScale = widthScale;
-        } else if (widthScale < 1 || heightScale < 1 && widthScale > heightScale){
+        } else if (widthScale > heightScale && (widthScale < 1 || heightScale < 1)){
             imgSettings.generalScale = heightScale;
         } else {
             imgSettings.generalScale = 1;
@@ -144,6 +145,7 @@
                         imgSettings.containment = 'parent';
                     }
                 }
+                $this.css('height', Math.round(heightWM));
             });
             disabledNode.each(function(){
                 $(this).removeClass('disabled');
