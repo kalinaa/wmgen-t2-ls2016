@@ -240,6 +240,7 @@ var position = (function () {
                 $('.position__watermark-one').addClass('hide');
                 $(this).addClass('position__first--active');
                 $('.position__second').removeClass('position__second--active');
+                $('.watermark-first').removeClass('watermark-link--active');
                 index++;                
          
                     _watermarkPage1();                
