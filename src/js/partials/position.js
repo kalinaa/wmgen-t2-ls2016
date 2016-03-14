@@ -135,6 +135,9 @@ var position = (function () {
                     tilingInput($('.input_y-second'), "-",  'width', 'width', 'margin-left');
                 });
 
+                $('.input_x-second').spinner();
+                $('.input_y-second').spinner();
+
                 function tilingInput(input, sign, widthHeight, val1, val2) {
                     
                     if(sign == '+'){
@@ -228,8 +231,9 @@ var position = (function () {
             }
             
             $('.input_x').val(0);
-            $('.input_y').val(0);          
-            
+            $('.input_y').val(0);
+            $('.input_x').spinner();
+            $('.input_y').spinner();
             // переключения режимов
             var index = 0;
             $('.position__first').on('click', function(e){
