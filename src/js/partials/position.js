@@ -78,11 +78,24 @@ var position = (function () {
             
             
             //инпуты в блоке замощенния
-            $('.input_x-second').on('keyup', function () {            
-                inputEnter($('.input_x-second'), 'height', 'margin-bottom', 'height');                
+            $('.input_x-second').on('keyup', function (e) {
+                if((e.which >= 48 && e.which <= 57) || (e.which >= 37 && e.which <=40) || e.which == 8){
+                    inputEnter($('.input_x-second'), 'height', 'margin-bottom', 'height');                  
+                }
+                else{
+                    margin = $('.img_small').css('margin-bottom');
+                    $('.input_x-second').val(margin.substring(0, margin.length - 2));
+                }
             });
-            $('.input_y-second').on('keyup', function () {
-                inputEnter($('.input_y-second'), 'width', 'margin-left', 'width');
+            
+            $('.input_y-second').on('keyup', function (e) {
+                if((e.which >= 48 && e.which <= 57) || (e.which >= 37 && e.which <=40) || e.which == 8){
+                    inputEnter($('.input_y-second'), 'width', 'margin-left', 'width');
+                }
+                else{
+                    margin = $('.img_small').css('margin-left');
+                    $('.input_y-second').val(margin.substring(0, margin.length - 2));
+                }
             });              
                     
             function inputEnter(input, val1, val2, widthHeight) {
@@ -329,37 +342,49 @@ var position = (function () {
             inputXY ($('.input_y'), $('.container_small-img'), 'top', 'y');
 
             function inputXY (input, img, position, axis) {
-                input.on('keyup', function () {
+                input.on('keyup', function (e) {                                    
                     $('.watermark-first').removeClass('watermark-link--active');
                     var value = input.val();
                     if(axis == 'x'){
-                        var maxValueX = $('.img_big').width() - $('.img_small').width();
-                        if(value >= maxValueX){
-                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
-                                value = maxValueX;
-                                input.val(maxValueX);
+                        if((e.which >= 48 && e.which <= 57) || (e.which >= 37 && e.which <=40) || e.which == 8){
+                            var maxValueX = $('.img_big').width() - $('.img_small').width();
+                            if(value >= maxValueX){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
+                                    value = maxValueX;
+                                    input.val(maxValueX);
+                                }
+                            }
+                            else if(value < 0){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
+                                    value = 0;
+                                    input.val(0);
+                                }
                             }
                         }
-                        else if(value < 0){
-                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
-                                value = 0;
-                                input.val(0);
-                            }
+                       else{
+                            var left = Math.round($('.img_small').offset().left) - Math.round($('.img_big').offset().left);
+                            input.val(left);
                         }
                     }
                     if(axis == 'y'){
-                        var maxValueY = $('.img_big').height() - $('.img_small').height();
-                        if(value >= maxValueY){
-                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
-                                value = maxValueX;
-                                input.val(maxValueX);
+                        if((e.which >= 48 && e.which <= 57) || (e.which >= 37 && e.which <=40) || e.which == 8){
+                            var maxValueY = $('.img_big').height() - $('.img_small').height();
+                            if(value >= maxValueY){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
+                                    value = maxValueX;
+                                    input.val(maxValueX);
+                                }
+                            }
+                            else if(value < 0){
+                                if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
+                                    value = 0;
+                                    input.val(0);
+                                }
                             }
                         }
-                        else if(value < 0){
-                            if(($('.img_small').width() <= $('.img_big').width()) || ($('.img_small').height() <= $('.img_big').height())){
-                                value = 0;
-                                input.val(0);
-                            }
+                        else{
+                            var top = Math.round($('.img_small').offset().top) - Math.round($('.img_big').offset().top);
+                            input.val(top);
                         }
                     }
                     img.css(position, value + 'px' );
