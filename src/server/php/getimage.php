@@ -191,10 +191,10 @@ function create_watermark_tiling($main_image_path, $watermark_image_path, $space
 	$main_image = new abeautifulsite\SimpleImage($main_image_path);
 
 	$step_x = $space_x + $wm_width;
-	$iteration_x = round($main_width/$step_x,0,PHP_ROUND_HALF_UP) + 1;
+	$iteration_x = ceil($main_width/$step_x) + 1;
 
 	$step_y = $space_y + $wm_height;
-	$iteration_y = round($main_height/$step_y,0,PHP_ROUND_HALF_UP) + 1;
+	$iteration_y = ceil($main_height/$step_y) + 1;
 
 	for ($i = 0; $i < $iteration_x; $i++) {
 		$image_y = $offset_y;	
