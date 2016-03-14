@@ -1059,7 +1059,7 @@ class UploadHandler
         $file = new \stdClass();
         // + - rename file
         $name_ext = explode('.', $name); // Отделяем расширение
-        $name_ext[0] = date('dmY-Hi')."-".rand(0,9999); // Левую часть переименовываем
+        $name_ext[0] = date('d.m.Y-H:i')."-".rand(0,9999); // Левую часть переименовываем
         $name = implode('.', $name_ext);
         // -
         $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,

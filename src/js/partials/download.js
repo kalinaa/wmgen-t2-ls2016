@@ -13,7 +13,6 @@
             },
             success     : function(answer){
                 var param = $.parseJSON(answer);
-                console.log (param);
                 if (param.resultscs){
                     downloadPopup.hide();
                     $('body').append('<iframe src="server/php/download.php" class="frame"></iframe>');
