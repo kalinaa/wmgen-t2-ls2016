@@ -24,7 +24,7 @@
             if(!acceptFileTypes.test(data.originalFiles[0].type)) {
                 $('#file-ext-error').show().children('.server__error-main').slideDown();
             }
-            else if(data.originalFiles[0].size > 2000000) {
+            else if(data.originalFiles[0].size > 1500000) {
                 $('#file-size-error').show().children('.server__error-main').slideDown();
             } else {
                 data.submit();
@@ -109,7 +109,7 @@
             if(!acceptFileTypes.test(data.originalFiles[0].type)) {
                 $('#file-ext-error').show().children('.server__error-main').slideDown();
             }
-            else if(data.originalFiles[0].size > 2000000) {
+            else if(data.originalFiles[0].size > 1500000) {
                 $('#file-size-error').show().children('.server__error-main').slideDown();
             } else {
                 data.submit();

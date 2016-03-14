@@ -7,7 +7,6 @@
             type        : 'post',
             url         : '../server/php/getimage.php',
             data        : $('#settings-form').serialize() + '&' + $.param(imgSettings),
-            timeout     : 30000,
             beforeSend  : function(){
                 downloadPopup.show();
             },
@@ -24,7 +23,8 @@
             error       : function(){
                 downloadPopup.hide();
                 $('#server-error').show().children('.server__error-main').slideDown();
-            }
+            },
+            timeout : 100000
         })
     });
     // Закрытие модального окна

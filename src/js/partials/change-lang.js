@@ -12,7 +12,7 @@
             reset       : "Reset",
             download    : "Download",
             error__modal: "Oops! Server don’t respond… Sorry, I ate it!!!",
-            errorsize__modal : "The file is too large. Please, upload file is not more than 2mb!",
+            errorsize__modal : "The file is too large. Please, upload file is not more than 1,5mb!",
             errorext__modal : "Please, upload image with extension .jpeg, .jpg, .png, .gif!",
             tooltip     : "Upload image",
             copy        : "&copy; 2016, This is my website, please do not copy or steal it."
@@ -28,7 +28,7 @@
             reset       : "Сброс",
             download    : "Скачать",
             error__modal: "Кажется, cервер не отвечает... простите, но я его съела !!!",
-            errorsize__modal : "Файл слишком большой. Пожалуйста загрузите файл не более 2мб!",
+            errorsize__modal : "Файл слишком большой. Пожалуйста загрузите файл не более 1,5мб!",
             errorext__modal : "Пожалуйста, загрузите изображение .jpeg, .jpg, .png, .gif!",
             tooltip     : "Загрузите изображение",
             copy        : "&copy; 2016, Это мой сайт, пожалуйста, не копируйте и не воруйте его."

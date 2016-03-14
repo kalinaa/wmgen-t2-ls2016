@@ -209,7 +209,7 @@
 .position__input {
   width: 45px;
   height: 45px;
-  background: #f1f1f5;
+  //background: #f1f1f5;
   border: 1px solid $gray;
   border-radius: 3px;
   box-sizing: border-box;
@@ -435,10 +435,6 @@
 }
 
 .transparency__slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 3px;
   background: #dbe1e8;
   width: 220px;
   border-radius: 5px;
