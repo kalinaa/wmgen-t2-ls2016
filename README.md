@@ -1,5 +1,5 @@
 # Watermark Generator
-Project #3 for Loftschool.com.
+Test project.
 ## You can easy add custom watermark to your photos. 
 ![interface](http://s8.hostingkartinok.com/uploads/images/2016/03/0b69ab6f809cf0e67334187762b8b63a.jpg)
 
