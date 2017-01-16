@@ -3,10 +3,6 @@ Test project.
 ## You can easy add custom watermark to your photos. 
 ![interface](http://s8.hostingkartinok.com/uploads/images/2016/03/0b69ab6f809cf0e67334187762b8b63a.jpg)
 
-## For users
-
-http://watermark.alexkalinin.tw1.ru/
-
 ### How to use
 - You can use Russian or English
 - Upload source image
